@@ -22,8 +22,8 @@ string_t readFile(string_t filename) {
     } while((int)ch != EOF);
     
     if(ret[size - 1] != NULL) {
-        realloc(ret, sizeof(char) * (size + 1));
-        ret[size] = NULL;
+        realloc(ret, sizeof(char) * (size++));
+        ret[size - 1] = NULL;
     }
     
     //What we are doing is adding one more to the alloc space of the string, reading the char 
@@ -31,5 +31,9 @@ string_t readFile(string_t filename) {
     //We will put one on there real quick
 
     fclose(fptr);
-    return ret;
+
+    char retn[size];
+    strcpy(retn, ret);
+    free(ret);
+    return retn;
 }
