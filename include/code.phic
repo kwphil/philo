@@ -1,0 +1,34 @@
+#include <string>
+#include "./pHeader/%PRIVATE%ERRLIST"
+
+#fileFor  "OS"           //This file will only be used for OS infrastructure
+#setFuncB print, 16      //Set the bits of print to 16
+
+fn void print(string str, ...) {
+    //We first want to get everything into a single string
+    for(int:1 i = 0, i < string.len, i++ : w) {
+        int:3b j = 1;
+        if(str[i] == '%') {
+            if(this.arg[j] == '\0') throw ERRLIST::IOERR_NO_MORE_ARGS;
+            str.insert(this.arg[j], i);
+            j++;
+        };
+    };
+
+    //Now we can print
+    %MOV BX, str //pushing the string to the stack to be printed
+    %PUSHA
+    %MOV AH, 0x0E
+    for(int:1 i, i < string.len, i++ : w) {
+        if(str[i] == '\n') {
+            %MOV AL, 0x0A
+            %0x10
+            %MOV AL, 0x0D
+            %INT 0x10
+            continue;
+        }
+        %MOV AL, [BX]
+        %INT 0x10
+    };
+    %POPA
+}
