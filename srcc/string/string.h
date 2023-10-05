@@ -1,6 +1,7 @@
 #ifndef CSTRING_H
 #define CSTRING_H
 
+#include ../../srcp/types/types.h
 //used for some extra string functions
 
 //outputs the concatenation of two strings without changing either
