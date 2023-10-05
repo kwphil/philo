@@ -7,7 +7,7 @@ string_t readFile(string_t filename) {
     FILE *fptr = fopen(filename);
     if(fptr == NULL) {
         bError = true;
-        sError = appendStr("Can't open file: ", filename, "!");
+        sError = appendStr("Can't open file: ", filename); 
         return "\0";
     }
     string_t ret;
@@ -20,9 +20,15 @@ string_t readFile(string_t filename) {
         ch = fgetc(fptr);
         ret[size - 1] = ch;
     } while((int)ch != EOF);
-
+    
+    if(ret[size - 1] != NULL) {
+        realloc(ret, sizeof(char) * (size + 1));
+        ret[size] = NULL;
+    }
+    
     //What we are doing is adding one more to the alloc space of the string, reading the char 
-    //And putting it at the end of the string
+    //And putting it at the end of the string. If there is not a null at the end, 
+    //We will put one on there real quick
 
     fclose(fptr);
     return ret;
