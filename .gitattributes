@@ -1,2 +1,2 @@
-*.phic linguist-language=philo
-*.phih linguist-language=philo
+**.phic linguist-language=philo
+**.phih linguist-language=philo
