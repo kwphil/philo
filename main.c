@@ -2,6 +2,7 @@
 #include "srcp/token/token.h"
 #include "srcc/file/file.h"
 #include "srcp/types/struct.h"
+#include "asm/convert.h"
 
 int main(int argc, char *argv[]) {
 
@@ -20,4 +21,6 @@ int run(char *argv[]) {
     asm_t    asmList        = convertAsm(tokenList);
 
     if(bError) return errorRet();
+
+    createBinFile(asmList);
 }
