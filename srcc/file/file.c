@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../srcp/types/typedef.h"
+#include "../../srcp/types/types.h"
+#include <string.h>
 
 string_t readFile(string_t filename) {
     FILE *fptr = fopen(filename);
@@ -11,11 +12,17 @@ string_t readFile(string_t filename) {
     }
     string_t ret;
     char ch;
+    size_t size = 0;
 
-    while(ch != EOF){
+    do {
+        realloc(ret, sizeof(char) * (size++));
+        
         ch = fgetc(fptr);
-        ret = appendStr(ret, ch);
-    }
+        ret[size - 1] = ch;
+    } while((int)ch != EOF);
+
+    //What we are doing is adding one more to the alloc space of the string, reading the char 
+    //And putting it at the end of the string
 
     fclose(fptr);
     return ret;
