@@ -10,7 +10,7 @@ string_t readFile(string_t filename) {
         sError = appendStr("Can't open file: ", filename); 
         return "\0";
     }
-    string_t ret;
+    ret = (char *) malloc(sizeof(char));
     char ch;
     size_t size = 0;
 
