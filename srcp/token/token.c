@@ -2,11 +2,13 @@
 #include "../types/types.h"
 #include <stddef.h>
 #include <stdlib.h>
-#include "../../src/file/read.h"
+#include "../../srcc/file/read.h"
+#include "../../cmplr/error.h"
 
 token_t *tokenize(char *fileOutput) {
-  realloc(currFile, sizeof(char) * fileLen);
-  token_t ret[fileLen];
+  setFileLen();
+  realloc(currFile.contents, sizeof(char) * fileLen);
+  token_t ret[sizeof(currFile.contents)];
 
   int i = 0;
   while((int)fileOutput[i++] != NULL) {
