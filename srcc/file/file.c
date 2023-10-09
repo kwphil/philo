@@ -2,15 +2,18 @@
 #include <stdlib.h>
 #include "../../srcp/types/types.h"
 #include <string.h>
+#include "../../cmplr/error/error.h"
 
 string_t readFile(string_t filename) {
-    FILE *fptr = fopen(filename);
+    FILE *fptr = fopen(filename, "r");
     if(fptr == NULL) {
         bError = true;
-        sError = appendStr("Can't open file: ", filename); 
+        char _sError[] = appendStr("Can't open file: ", filename);
+        realloc(sError, sizeof(_sError));
+        strcpy(sError, _sError); 
         return "\0";
     }
-    ret = (char *) malloc(sizeof(char));
+    char ret[] = (char *)malloc(sizeof(char));
     char ch;
     size_t size = 0;
 
@@ -32,8 +35,5 @@ string_t readFile(string_t filename) {
 
     fclose(fptr);
 
-    char retn[size];
-    strcpy(retn, ret);
-    free(ret);
-    return retn;
+    return ret;
 }
