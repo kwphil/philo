@@ -15,7 +15,7 @@ string_t readFile(string_t filename) {
     }
     char ret[] = (char *)malloc(sizeof(char));
     char ch;
-    size_t size = 0;
+    int  size = 0;
 
     do {
         realloc(ret, sizeof(char) * (size++));
