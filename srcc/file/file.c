@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../../srcp/types/types.h"
 #include <string.h>
+#include "../../srcp/types/types.h"
 #include "../../cmplr/error/error.h"
 
 string_t readFile(string_t filename) {
@@ -11,6 +11,7 @@ string_t readFile(string_t filename) {
         char _sError[] = appendStr("Can't open file: ", filename);
         realloc(sError, sizeof(_sError));
         strcpy(sError, _sError); 
+        free(_sError);
         return "\0";
     }
     char ret[] = (char *)malloc(sizeof(char));
