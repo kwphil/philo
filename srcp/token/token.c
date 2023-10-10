@@ -4,7 +4,7 @@
 #include "../types/types.h"
 #include "../../srcc/file/read.h"
 #include "../../srcc/string/string.h"
-#include "../../cmplr/error.h"
+#include "../../cmplr/error/error.h"
 
 token_t *tokenize(const char *fileOutput) {
   token_t ret[sizeof(currFile.contents)];
