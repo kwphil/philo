@@ -36,5 +36,11 @@ string_t readFile(string_t filename) {
 
     fclose(fptr);
 
+    //Now as an extra, we will update the currFile
+
+    realloc(currFile.contents, sizeof(char) * fileLen);
+    currFile.name = filename;
+    strcpy(currFile)
+
     return ret;
 }
