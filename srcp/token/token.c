@@ -32,7 +32,11 @@ token_t tokenizeWord(const char *currWord) {
     goto ASSIGN_VALUE;
   type++;
 
-  
+  i = 0;
+  while(operatorList[i++][0] != NULL)
+    if(strcmp(operatorList[i], currWord))
+        goto ASSIGN_VALUE
+  type++;
 
   //Did not match anything, so we are we will say it is a name for now. We can return an error later if need be
   goto ASSIGN_VALUE
@@ -61,4 +65,4 @@ const char *operatorList[] = {"#", "\v", //-------------------------------------
                               "?", ":", "\v", //---------------------------------------------------------Ternary
                               "=", "+=", "-=", "*=", "/=", "%=", ">>=", "<<=", "&=", "|=", "^=", "\v", //Assignment
                               ",", "\v" //---------------------------------------------------------------Comma Operator
-                             };
+                             }; //The vertical tab is used to indicate the order in which the operators are used
