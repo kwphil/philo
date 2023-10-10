@@ -3,11 +3,10 @@
 #include "../types/struct.h"
 #include "../types/types.h"
 #include "../../srcc/file/read.h"
+#include "../../srcc/string/string.h"
 #include "../../cmplr/error.h"
 
 token_t *tokenize(char *fileOutput) {
-  setFileLen();
-  realloc(currFile.contents, sizeof(char) * fileLen);
   token_t ret[sizeof(currFile.contents)];
 
   int i = 0;
