@@ -6,7 +6,7 @@
 #include "../../srcc/string/string.h"
 #include "../../cmplr/error.h"
 
-token_t *tokenize(char *fileOutput) {
+token_t *tokenize(const char *fileOutput) {
   token_t ret[sizeof(currFile.contents)];
 
   int i = 0;
@@ -14,28 +14,38 @@ token_t *tokenize(char *fileOutput) {
     setCurrWord(i);
 
     ret[i] = tokenizeWord(currWord);
-
-    if(bError) setErr();
   }
 
   return ret;
 }
 
-token_t tokenizeWord(char *currWord) {
-  int i = 0;
+token_t tokenizeWord(const char *currWord) {
+  int i = 0, type = 0;
   token_t ret;
   
-  while(keywordList[i++][0] != NULL) {
-    if(strcmp(keywordList[i], currWord)) {
-      ret.type = 0;
-      ret.value = currWord;
-      ret.loc.word = currLoc.word;
-      ret.loc.line = currLoc.line;
-      return ret;
-    }
-  }
+  while(keywordList[i++][0] != NULL)
+    if(strcmp(keywordList[i], currWord))
+      goto ASSIGN_VALUE;
+  type++;
+
+  if(isNum(currWord))
+    goto ASSIGN_VALUE;
+  type++;
 
   
+
+  //Did not match anything, so we are we will say it is a name for now. We can return an error later if need be
+  goto ASSIGN_VALUE
+  
+  ASSIGN_VALUE:
+  ret.type = i;
+  strcpy(ret.value, currWord);
+  ret.loc.line = currLoc.line;
+  ret.loc.word = currLoc.word;
+  return ret;
 }
 
 const char *keywordList[] = {"return"};
+const char *operatorList[] = {"+", "-", "*", "/", "%", "+=", "-=", "*=", "/=", "%=", "++", "--", //Arithmetic Operators
+                              "&", "|", "^", "&=", "|=", "^=",
+                             };
