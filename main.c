@@ -2,6 +2,7 @@
 #include "srcp/token/token.h"
 #include "srcc/file/file.h"
 #include "srcp/types/struct.h"
+#include "cmplr/error/error..h"
 #include "asm/convert.h"
 
 int main(int argc, char *argv[]) {
@@ -12,11 +13,11 @@ int main(int argc, char *argv[]) {
         setErr();
         return 1;
     }
-    return run(argv);
+    return run(argv[1]);
 }
 
-int run(char *argv[]) {
-    string_t mainFileOutput = readFile(argv[1]);
+int run(char *filename) {
+    string_t mainFileOutput = readFile(filename);
     token_t *tokenList      = tokenize(mainFileOutput);
     asm_t    asmList        = convertAsm(tokenList);
 
