@@ -4,7 +4,7 @@
 #include "../../srcp/types/types.h"
 #include "../../cmplr/error/error.h"
 
-string_t readFile(string_t filename) {
+string_t readFile(const string_t filename) {
     FILE *fptr = fopen(filename, "r");
     if(fptr == NULL) {
         bError = true;
@@ -43,4 +43,10 @@ string_t readFile(string_t filename) {
     strcpy(currFile.asmList[0], (char *)NULL);
 
     return ret;
+}
+
+void writeFile(const string_t filename, const string_t data) {
+    FILE *fptr = fopen(filename, "w");
+    fprintf(fptr, data);
+    fclose(fptr);
 }
