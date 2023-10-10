@@ -1,7 +1,7 @@
-#include "../types/struct.h"
-#include "../types/types.h"
 #include <stddef.h>
 #include <stdlib.h>
+#include "../types/struct.h"
+#include "../types/types.h"
 #include "../../srcc/file/read.h"
 #include "../../cmplr/error.h"
 
@@ -23,9 +23,20 @@ token_t *tokenize(char *fileOutput) {
 }
 
 token_t tokenizeWord(char *currWord) {
-  if(isNum(currWord)) 
-}
+  int i = 0;
+  token_t ret;
+  
+  while(keywordList[i++][0] != NULL) {
+    if(strcmp(keywordList[i], currWord)) {
+      ret.type = 0;
+      ret.value = currWord;
+      ret.loc.word = currLoc.word;
+      ret.loc.line = currLoc.line;
+      return ret;
+    }
+  }
 
-const int listLen[] = {1}
+  
+}
 
 const char *keywordList[] = {"return"};
