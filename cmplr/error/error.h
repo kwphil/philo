@@ -4,7 +4,7 @@
 #include "stdbool.h"
 
 bool bError;
-char sError[];
+char *sError;
 
 void setErr();
 
