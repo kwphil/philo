@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "../types/struct.h"
 #include "../types/types.h"
+#include "../types/list.h"
 #include "../../srcc/file/read.h"
 #include "../../srcc/string/string.h"
 #include "../../cmplr/error/error.h"
