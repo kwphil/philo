@@ -28,9 +28,9 @@ int build(const asm_t *asmList, const char argv[]) {
         if(sect <= 3) {
             j = 0;
             realloc(fileContents, sizeof(fileContents) + (sizeof(char) * 13)) // section .(sect)
-            strcat(fileContents, " section .")
-            if(sect == 1) strcat(fileContents, "data");
-            else(strcat(fileContents, "bss"));
+            strcat(fileContents, "section .")
+            if(sect == 1) strcat(fileContents, "data ");
+            else(strcat(fileContents, "bss "));
             sect++;
         } else break;
     }
