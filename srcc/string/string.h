@@ -12,4 +12,9 @@ string_t appendStr(string_t str1, string_t str2);
 //Returns true if the entire string is a number
 bool isNum(string_t str);
 
+//Substr is just a substring
+//Negative inputs will be subtracted by the end of the string
+//0 at the end param will be the last char
+string_t substr(string_t str, int start, int end);
+
 #endif
