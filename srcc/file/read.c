@@ -10,14 +10,14 @@ void setFileLen() {
 
 bool currWordIsOperator = false;
 
-void nextWord() {
+void nextWord(const bool includeOperator) {
     int i = getLoc(currLoc), len = 0;
     char ret[] = malloc(sizeof(char) * 0);
     bool check;
 
     while(currFile.contents[i] != ' ') {
         //In case there are any operators we want to catch them
-        if(currWordIsOperator ^ matchStrInArr(currFile.contents[i], operatorList)) break;
+        if(includeOperator)if(currWordIsOperator ^ matchStrInArr(currFile.contents[i], operatorList)) break;
 
         if(currFile.contents[i] == '\n') {
             currLoc.line++;
@@ -35,7 +35,7 @@ void nextWord() {
     } 
 
     while(currFile.contents[i] != ' ' || currFile.contents[i] != '\n') {
-        if(currWordIsOperator ^ matchStrInArr(currFile.contents[i], operatorList)) break;
+        if(includeOperator)if(currWordIsOperator ^ matchStrInArr(currFile.contents[i], operatorList)) break;
         len++;
 
         realloc(ret, sizeof(char) * len);
