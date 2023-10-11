@@ -12,7 +12,7 @@ token_t *tokenize(const char *fileOutput) {
 
   int i = 0;
   while((int)fileOutput[i++] != NULL) {
-    setCurrWord(i);
+    nextWord(true);
 
     ret[i] = tokenizeWord(currWord);
   }
@@ -36,16 +36,17 @@ token_t tokenizeWord(const char *currWord) {
   i = 0;
   while(operatorList[i++][0] != NULL)
     if(strcmp(operatorList[i], currWord))
-        goto ASSIGN_VALUE
+      goto ASSIGN_VALUE;
   type++;
 
   //Did not match anything, so we are we will say it is a name for now. We can return an error later if need be
-  goto ASSIGN_VALUE
+  goto ASSIGN_VALUE;
   
-  ASSIGN_VALUE:
+  ASSIGN_VALUE:;
   ret.type = i;
   strcpy(ret.value, currWord);
   ret.loc.line = currLoc.line;
   ret.loc.word = currLoc.word;
   return ret;
 }
+
