@@ -38,7 +38,9 @@ string_t readFile(const string_t filename) {
 
     //Now as an extra, we will update the currFile
 
-    realloc(currFile.contents, sizeof(char) * fileLen);
+    realloc(currFile.contents, sizeof(char) * size);
+    strcpy(currFile.contents, ret);
+    realloc(currFile.name, strlen(filename));
     strcpy(currFile.name, filename);
     strcpy(currFile.asmList[0], (char *)NULL);
 
