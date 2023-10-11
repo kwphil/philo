@@ -21,6 +21,7 @@ void build(const asm_t *asmList, const char argv[]) {
 
             strcat(fileContents, appendStr(asmList[i].ins, " "));
             free(currIns);
+            i = 0;
             loc++;
         }
 
