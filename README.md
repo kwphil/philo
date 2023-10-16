@@ -15,7 +15,7 @@ fn public int main() {
 If you want to learn how to use Philo in depth, check out the doc dir in the repository.
 It will take you step-by-step to become a pro in the language.
 
-If you feel like that the earlier example is enough, here is another example:
+If you feel like that the earlier example isn't enough, here is another example that shows more of what Philo can do that others can't:
 ```
 #include <io>
 #include <convert>
