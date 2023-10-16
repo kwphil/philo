@@ -19,6 +19,8 @@ If you feel like that the earlier example is enough, here is another example:
 ```
 #include <io>
 #include <convert>
+#include "txt/ex.txt"
+#include "asm/b64/print.asm"
 #prgmfor "OS"
 #bits 64
 
@@ -40,6 +42,16 @@ fn public int main() {
   \call print64
   \msg0 db "Hello, World!",0
 
+  print(readFile("txt/ex.txt"))
+
   return 0;
 }
 ```
+
+Another great thing about Philo is the linking power. It can link:
+- Other Philo files
+- Assembly files
+- C files
+- Rust files
+- Binary files
+- Plain text files
