@@ -1,9 +1,10 @@
 #include <stdlib.h>
+#include "../../srcc/file/read.h"
 
 const char *keywordSynt[] = {"^ 'int'", //return
                              "^('bool') 'exprList'", //while 
                              "^('bool') 'exprList'", //if
-                             "^('expr';'expr';'expr') 'exprList'" //for
+                             "^('expr';'expr';'expr' ?/:'colExpr'/) 'exprList'" //for
                             };
 const char *operatorSynt[] = {"^ 'macro'",
                               "^ 'asmLine'",
