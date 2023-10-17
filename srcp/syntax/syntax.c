@@ -1,3 +1,5 @@
+#include <stdlib.h>
+
 const char *keywordSynt[] = {"^ 'int'", //return
                              "^('bool') 'exprList'", //while 
                              "^('bool') 'exprList'", //if
@@ -53,5 +55,8 @@ const char *operatorSynt[] = {"^ 'macro'",
                              }
 
 bool checkSyntax() {
-    
+    int i = 0;
+    while(currFile.tokenList[i++][0] != NULL) {
+        
+    }
 }
