@@ -7,7 +7,7 @@ const char *operatorSynt[] = {"^ 'macro'",
                               "^ 'asmLine'",
                               "^'expr')",
                               "\0",
-                              "^'expr']",
+                              "^'int']",
                               "\0",
                               "'structObj'^'var'",
                               "'macroList'^'macro'",
@@ -52,6 +52,6 @@ const char *operatorSynt[] = {"^ 'macro'",
                               "'value'^'value'"
                              }
 
-checkSyntax() {
+bool checkSyntax() {
     
 }
