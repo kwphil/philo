@@ -55,3 +55,10 @@ Another great thing about Philo is the linking power. It can link:
 - Rust files
 - Binary files
 - Plain text files
+
+### Packages
+In order to fit all the necessary applications to fit all this in, Philo has its own package manager. It can be called with the ```Phacket``` command. It has a few packages it manages, such as:
+- gcc
+- pBinutil
+- rust
+- pLinApp
