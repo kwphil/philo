@@ -48,6 +48,8 @@ fn public int main() {
 }
 ```
 
+If you notice on the last print, it seems to be missing a semicolon. There is another ability of Philo. Missing semicolons will only create warnings and will be fixed for you.
+
 Another great thing about Philo is the linking power. It can link:
 - Other Philo files
 - Assembly files
@@ -62,3 +64,5 @@ In order to fit all the necessary applications to fit all this in, Philo has its
 - pBinutil
 - rust
 - pLinApp
+
+PHACKET DOES NOT YET EXIST AND ALL NECESSARY PACKAGES WILL BE PUT IN ```PACKAGE``` DIR IN THE COMPILER
