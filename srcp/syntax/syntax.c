@@ -51,3 +51,7 @@ const char *operatorSynt[] = {"^ 'macro'",
                               "'var'^'int'",
                               "'value'^'value'"
                              }
+
+checkSyntax() {
+    
+}

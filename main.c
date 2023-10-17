@@ -22,8 +22,8 @@ int main(int argc, char *argv[]) {
 
 int run(char *argv[]) {
     string_t mainFileOutput = readFile(argv[1]);
-    token_t *tokenList      = tokenize(mainFileOutput);
-    asm_t    asmList        = convertAsm(tokenList);
+    tokenize(mainFileOutput);
+    convertAsm(tokenList);
 
     if(bError) return errorRet();
 
