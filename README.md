@@ -38,9 +38,9 @@ fn public int main() {
     print(i.tostr()); //prints 1-64
   }
 
-  \mov rbx, msg0
-  \call print64
-  \msg0 db "Hello, World!",0
+  %mov rbx, msg0
+  %call print64
+  %msg0 db "Hello, World!",0
 
   print(readFile("txt/ex.txt"))
 
