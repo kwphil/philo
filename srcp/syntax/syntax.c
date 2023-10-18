@@ -68,11 +68,18 @@ bool checkSyntax() {
     currToken = currFile.tokenList[0];
     nextToken = currFile.tokenList[1];
     while(currFile.tokenList[i++][0] != NULL) {
-        currToken = prevToken;
-
+        prevToken = currToken;
+        currToken = nextToken;
+        nextToken = currFile.tokenList[i + 1];
 
         if(!checkTokenSyntax(i)) return false;
     }
+
+    return true;
 }
 
-bool checkTokenSyntax(!c)
+bool checkTokenSyntax(int tokenNum) {
+    if(currToken.type == 1) {
+        
+    }
+}
