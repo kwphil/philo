@@ -56,17 +56,23 @@ const char *operatorSynt[] = {"^ 'macro'",
                               "'value'^'value'"
                              }
 
+token_t prevToken;
 token_t currToken;
+token_t nextToken;
 
 bool checkSyntax() {
     int i = 0;
-    setWord(0);
 
+    prevToken.type = -1;
+
+    currToken = currFile.tokenList[0];
+    nextToken = currFile.tokenList[1];
     while(currFile.tokenList[i++][0] != NULL) {
-        
+        currToken = prevToken;
+
 
         if(!checkTokenSyntax(i)) return false;
     }
 }
 
-checkTokenSyntax
+bool checkTokenSyntax(!c)
