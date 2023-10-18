@@ -1,10 +1,11 @@
 #include <stdlib.h>
+#include <stdbool.h>
 #include "../../srcc/file/read.h"
 
-const char *keywordSynt[] = {"^ 'int'", //return
+const char *keywordSynt[] = {"^ 'int' ?':RET';", //return
                              "^('bool') 'exprList'", //while 
                              "^('bool') 'exprList'", //if
-                             "^('expr';'expr';'expr' ?/:'colExpr'/) 'exprList'" //for
+                             "^('expr';'expr';'expr' ?':FOR') 'exprList'" //for
                             };
 const char *operatorSynt[] = {"^ 'macro'",
                               "^ 'asmLine'",
@@ -55,9 +56,17 @@ const char *operatorSynt[] = {"^ 'macro'",
                               "'value'^'value'"
                              }
 
+token_t currToken;
+
 bool checkSyntax() {
     int i = 0;
+    setWord(0);
+
     while(currFile.tokenList[i++][0] != NULL) {
         
+
+        if(!checkTokenSyntax(i)) return false;
     }
 }
+
+checkTokenSyntax
