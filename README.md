@@ -1,5 +1,5 @@
 Version 0.2
-<img src="https://github.com/kwphil/philo/blob/main/.media/philo.png?raw=true" alt="philo.png"/>![image](https://github.com/kwphil/philo/assets/121273949/64ebdca1-f0e9-4d55-bc06-8607c9459402)
+<img src="https://github.com/kwphil/philo/blob/main/.media/philo.png?raw=true" alt="philo logo"/>![image](https://github.com/kwphil/philo/assets/121273949/64ebdca1-f0e9-4d55-bc06-8607c9459402)
 
 Philo is a system programming language that is meant to be used on system programming, and is meant to focus primarily on macros.
 
@@ -13,7 +13,7 @@ fn public int main() {
   print("Hello, World!");
 }
 ```
-If you want to learn how to use Philo in depth, check out the doc dir in the repository.
+If you want to learn how to use Philo in depth, check out the [doc dir](www.github.com/kwphil/philo/doc) in the repository.
 It will take you step-by-step to become a pro in the language.
 
 If you feel like that the earlier example isn't enough, here is another example that shows more of what Philo can do that others can't:
@@ -66,5 +66,4 @@ In order to fit all the necessary applications to fit all this in, Philo has its
 - rust
 - pLinApp
 
-PHACKET DOES NOT YET EXIST AND ALL NECESSARY PACKAGES WILL BE PUT IN ```PACKAGE``` DIR IN THE COMPILER
-
+PHACKET DOES NOT YET EXIST AND ALL NECESSARY PACKAGES WILL BE PUT IN ```PACKAGE``` DIR IN THE COMPILER FOR YOU UNTIL THE PACKAGE MANAGER IS BUILT
