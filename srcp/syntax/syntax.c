@@ -2,6 +2,8 @@
 #include <stdbool.h>
 #include "../../srcc/file/read.h"
 
+const char *syntList[][] = {*keywordSynt, *operatorSynt};
+
 const char *keywordSynt[] = {"^ 'int' ?':RET';", //return
                              "^('bool') 'exprList'", //while 
                              "^('bool') 'exprList'", //if
@@ -79,7 +81,9 @@ bool checkSyntax() {
 }
 
 bool checkTokenSyntax(int tokenNum) {
-    if(currToken.type == 1) {
-        
+    for(int i = 0; syntList[currToken.type - 1][i][0] != NULL; i++) {
+        if(matchstr(currToken.value, tokenTypeList[currToken.type - 1][i])) {
+            return syntCheck(i);
+        }
     }
 }
