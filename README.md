@@ -13,7 +13,7 @@ fn public int main() {
   print("Hello, World!");
 }
 ```
-If you want to learn how to use Philo in depth, check out the [doc dir](www.github.com/kwphil/philo/doc) in the repository.
+If you want to learn how to use Philo in depth, check out the [doc dir](kwphil/philo/doc) in the repository.
 It will take you step-by-step to become a pro in the language.
 
 If you feel like that the earlier example isn't enough, here is another example that shows more of what Philo can do that others can't:
