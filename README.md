@@ -1,5 +1,5 @@
 Version 0.2
-<img src="https://github.com/kwphil/philo/blob/main/.media/philo.png?raw=true" alt="philo logo"/>![image](https://github.com/kwphil/philo/assets/121273949/64ebdca1-f0e9-4d55-bc06-8607c9459402)
+<img src="https://github.com/kwphil/philo/blob/main/.media/philo.png?raw=true" alt="philo logo"/>
 
 Philo is a system programming language that is meant to be used on system programming, and is meant to focus primarily on macros.
 
