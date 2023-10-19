@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include "../../srcc/file/read.h"
 
 const char *syntList[][] = {*keywordSynt, *operatorSynt};
@@ -86,4 +87,28 @@ bool checkTokenSyntax(int tokenNum) {
             return syntCheck(i);
         }
     }
+
+    //Return compiler error
+    bError = true;
+    char _sError[] = appendStr("Compiler Error: Uncaught token: ", currToken.value)
+    realloc(sError, strlen(_sError));
+    strcpy(sError, _sError);
+    return false;
 }
+
+bool syntCheck(int i) {
+    ;
+    for(int i = 0; i < strlen(syntList[currToken.type - 1][i]); i++) {
+
+    }
+
+    bError = true;
+    char _sError[] = "Uncaught compiler error!";
+    realloc(sError, _sError);
+    strcpy(sError, _sError);
+    return false;
+}
+
+typedef struct __syntStruct_s {
+    
+} syntStruct_s;
