@@ -111,6 +111,8 @@ bool syntCheck(int i) {
 }
 
 void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
+    if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
+
     bool inSect = false, incl = false, excl = false;
     char currText = "";
 
@@ -143,16 +145,17 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
         }
 
         if(syntList[currToken.type - 1][syntLoc][i] == '^') {
-            syntaxList[j].dirDefine = true;
+            syntaxList[j++].dirDefine = true;
 
             //value
             const register char _symbList[] = malloc(sizeof(symbList[currToken.type - 1][syntLoc]));
             strcpy(symbList[currToken.type - 1][syntLoc]);
 
-            realloc(syntaxList[j].value, _symbList)
+            realloc(syntaxList[j].value, _symbList);
             strcpy(syntaxList[j].value, _symbList);   
 
-
+            syntaxList[j].exclude = -1;
+            syntaxList[j].include = -1;
         }
     }
 }
