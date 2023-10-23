@@ -103,7 +103,7 @@ bool syntCheck(int i) {
     }
 
     bError = true;
-    char _sError[] = "Compiler Error: Uncaught compiler error in syntax.c::106:99!";
+    const register char _sError[] = "Compiler Error: Uncaught compiler error in syntax.c::106:99!";
     realloc(sError, _sError);
     strcpy(sError, _sError);
     free(_sError);
@@ -118,7 +118,7 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
             if(syntList[currToken.type - 1][i] == '\'') {
                 inSect = false;
 
-                strcpy(syntaxList[j++].value = currText);
+                strcpy(syntaxList[j++].value, currText);
 
                 realloc(currText, sizeof(char));
                 strcpy(currText, "");
@@ -131,7 +131,17 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
         }
 
         if(syntList[currToken.type - 1][syntLoc][i] == '\'') {
-            
+            inSect = true;
+
+            continue;
+        }
+
+        if(syntList[currToken.type - 1][syntLoc][i] == '^') {
+            const register char _symbList[] = malloc(sizeof(symbList[currToken.type - 1][syntLoc]));
+            strcpy(symbList[currToken.type - 1][syntLoc]);
+
+            realloc(syntaxList[j++].value, _symbList)
+            strcpy(syntaxList[j].value, _symbList);   
         }
     }
 }
