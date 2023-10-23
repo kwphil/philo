@@ -103,7 +103,7 @@ bool syntCheck(int i) {
     }
 
     bError = true;
-    const register char _sError[] = "Compiler Error: Uncaught compiler error in syntax.c::106:99!";
+    const char _sError[] = "Compiler Error: Uncaught compiler error in syntax.c::106:99!";
     realloc(sError, _sError);
     strcpy(sError, _sError);
     free(_sError);
@@ -148,7 +148,7 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
             syntaxList[j++].dirDefine = true;
 
             //value
-            const register char _symbList[] = malloc(sizeof(symbList[currToken.type - 1][syntLoc]));
+            const char _symbList[] = malloc(sizeof(symbList[currToken.type - 1][syntLoc]));
             strcpy(symbList[currToken.type - 1][syntLoc]);
 
             realloc(syntaxList[j].value, _symbList);
