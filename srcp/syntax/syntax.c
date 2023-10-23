@@ -111,8 +111,9 @@ bool syntCheck(int i) {
 }
 
 void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
-    bool inSect = false;
+    bool inSect = false, incl = false, excl = false;
     char currText = "";
+
     for(int i = 0, j = 0; i < strlen(syntList[currToken.type - 1][syntLoc]); i++) {
         if(inSect) {
             if(syntList[currToken.type - 1][i] == '\'') {
@@ -122,12 +123,17 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
 
                 realloc(currText, sizeof(char));
                 strcpy(currText, "");
-            } else {
-                realloc(currText, sizeof(currText) + sizeof(char));
-                currText[strlen(currText) - 1] = syntList[currToken.type - 1][syntLoc][i];
+            }
+
+            if(syntList[currToken.type - 1] == '+') {
+                incl = true;
             }
 
             continue;
+
+            NONE:
+            realloc(currText, sizeof(currText) + sizeof(char));
+            currText[strlen(currText) - 1] = syntList[currToken.type - 1][syntLoc][i];
         }
 
         if(syntList[currToken.type - 1][syntLoc][i] == '\'') {
@@ -137,11 +143,16 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
         }
 
         if(syntList[currToken.type - 1][syntLoc][i] == '^') {
+            syntaxList[j].dirDefine = true;
+
+            //value
             const register char _symbList[] = malloc(sizeof(symbList[currToken.type - 1][syntLoc]));
             strcpy(symbList[currToken.type - 1][syntLoc]);
 
-            realloc(syntaxList[j++].value, _symbList)
+            realloc(syntaxList[j].value, _symbList)
             strcpy(syntaxList[j].value, _symbList);   
+
+
         }
     }
 }
