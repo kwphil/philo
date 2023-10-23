@@ -60,9 +60,7 @@ const char *operatorSynt[] = {"^ 'macro'",
                               "'value'^'value'"
                              };
 
-token_t prevToken;
-token_t currToken;
-token_t nextToken;
+token_t prevToken, currToken, nextToken;
 
 bool checkSyntax() {
     int i = 0;
@@ -98,6 +96,7 @@ bool checkTokenSyntax(int tokenNum) {
 bool syntCheck(int i) {
     struct syntStruct_s *syntaxUse;
     insertSyntList(syntaxUse, i);
+    if(bError) return false;
     for(int i = 0; i < strlen(syntList[currToken.type - 1][i]); i++) {
 
     }
@@ -118,6 +117,14 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
 
     for(int i = 0, j = 0; i < strlen(syntList[currToken.type - 1][syntLoc]); i++) {
         if(inSect) {
+            if(incl && excl) {
+                bError = true;
+                const char _sError[] = "Compiler Error! var incl & excl are both defined";
+                realloc(sError, sizeof(_sError));
+                strcpy(sError, _sError);
+
+                return;
+            }
             if(syntList[currToken.type - 1][i] == '\'') {
                 inSect = false;
 
@@ -129,6 +136,11 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
 
             if(syntList[currToken.type - 1] == '+') {
                 incl = true;
+            }
+
+            if(syntList[currToken.type - 1] == ' ') {
+                if(!incl && !excl) break;
+
             }
 
             continue;
@@ -156,6 +168,8 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
 
             syntaxList[j].exclude = -1;
             syntaxList[j].include = -1;
+
+            continue;
         }
     }
 }
