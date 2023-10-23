@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <stdint.h>
 #include "../../srcc/file/read.h"
 
 const char *syntList[][] = {*keywordSynt, *operatorSynt};
@@ -57,7 +58,7 @@ const char *operatorSynt[] = {"^ 'macro'",
                               "'var'^'int'",
                               "'var'^'int'",
                               "'value'^'value'"
-                             }
+                             };
 
 token_t prevToken;
 token_t currToken;
@@ -97,18 +98,22 @@ bool checkTokenSyntax(int tokenNum) {
 }
 
 bool syntCheck(int i) {
-    ;
+    syntStruct_s *syntaxUse;
     for(int i = 0; i < strlen(syntList[currToken.type - 1][i]); i++) {
 
     }
 
     bError = true;
-    char _sError[] = "Uncaught compiler error!";
+    char _sError[] = "Compiler Error: Uncaught compiler error in syntax.c::106:99!";
     realloc(sError, _sError);
     strcpy(sError, _sError);
     return false;
 }
 
 typedef struct __syntStruct_s {
-    
+    bool    dirDefined;
+    char   *value;
+    int8_t  type
+    int8_t *exclude;
+    int8_t *include;
 } syntStruct_s;
