@@ -83,11 +83,9 @@ bool checkSyntax() {
 }
 
 bool checkTokenSyntax(int tokenNum) {
-    for(int i = 0; syntList[currToken.type - 1][i][0] != NULL; i++) {
-        if(matchstr(currToken.value, tokenTypeList[currToken.type - 1][i])) {
+    for(int i = 0; syntList[currToken.type - 1][i][0] != NULL; i++)
+        if(matchstr(currToken.value, tokenTypeList[currToken.type - 1][i])) 
             return syntCheck(i);
-        }
-    }
 
     //Return compiler error
     bError = true;
@@ -98,7 +96,8 @@ bool checkTokenSyntax(int tokenNum) {
 }
 
 bool syntCheck(int i) {
-    syntStruct_s *syntaxUse;
+    struct syntStruct_s *syntaxUse;
+    insertSyntList(syntaxUse, i);
     for(int i = 0; i < strlen(syntList[currToken.type - 1][i]); i++) {
 
     }
@@ -107,13 +106,39 @@ bool syntCheck(int i) {
     char _sError[] = "Compiler Error: Uncaught compiler error in syntax.c::106:99!";
     realloc(sError, _sError);
     strcpy(sError, _sError);
+    free(_sError);
     return false;
 }
 
-typedef struct __syntStruct_s {
+void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
+    bool inSect = false;
+    char currText = "";
+    for(int i = 0, j = 0; i < strlen(syntList[currToken.type - 1][syntLoc]); i++) {
+        if(inSect) {
+            if(syntList[currToken.type - 1][i] == '\'') {
+                inSect = false;
+
+                strcpy(syntaxList[j++].value = currText);
+
+                realloc(currText, sizeof(char));
+                strcpy(currText, "");
+            } else {
+                realloc(currText, sizeof(currText) + sizeof(char));
+                currText[strlen(currText) - 1] = syntList[currToken.type - 1][syntLoc][i];
+            }
+
+            continue;
+        }
+
+        if(syntList[currToken.type - 1][syntLoc][i] == '\'') {
+            
+        }
+    }
+}
+
+struct syntStruct_s {
     bool    dirDefined;
     char   *value;
-    int8_t  type
     int8_t *exclude;
     int8_t *include;
-} syntStruct_s;
+};
