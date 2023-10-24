@@ -99,11 +99,12 @@ bool checkTokenSyntax(int tokenNum) {
 bool syntCheck(int i) {
     if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
 
-    struct syntStruct_s *syntaxUse;
-    insertSyntList(syntaxUse, i);
+    struct syntStruct_t *syntaxList;
+    insertSyntList(syntaxList, i);
     if(bError) return false;
-    for(int i = 0; i < strlen(syntList[currToken.type - 1][i]); i++) {
-
+    for(int i = 0; syntaxList[i].value[0] != )
+    for(int i = 0; syntaxList[i].value[0] != NULL; i++) {
+        if(matchType())
     }
 
     bError = true;
