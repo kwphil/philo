@@ -6,59 +6,62 @@
 
 const char *syntList[][] = {*keywordSynt, *operatorSynt};
 
-const char *keywordSynt[] = {"^ 'int' ?':RET';", //return
-                             "^('bool') 'exprList'", //while 
-                             "^('bool') 'exprList'", //if
-                             "^('expr';'expr';'expr' ?':FOR') 'exprList'" //for
-                            };
-const char *operatorSynt[] = {"^ 'macro'",
-                              "^ 'asmLine'",
-                              "^'expr')",
-                              "\0",
-                              "^'int']",
-                              "\0",
-                              "'structObj'^'var'",
-                              "'macroList'^'macro'",
-                              "'int'^",
-                              "'int'^",
-                              "'expr +COLAVAILIABLE'^'colExpr'"
-                              "'int'^'int' | 'char`'^'char`'",
-                              "'int'^'int' | 'char`'^'int'",
-                              "^'bool",
-                              "^'int'",
-                              "^'var'",
-                              "^'var'",
-                              "^('ANY')",
-                              "^('macro', 'int') | ^('macro')",
-                              "'int'^'int' | 'char`'^'int'",
-                              "'int'^'int'",
-                              "'int'^'int'",
-                              "'int'^'int'",
-                              "'int'^'int'",
-                              "'int'^'int'",
-                              "'int'^'int'",//<=
-                              "'int'^'int'",
-                              "'int'^'int'",
-                              "'expr -void'^'expr -void'",
-                              "'expr -void'^'expr -void'",
-                              "'int'^'int'",
-                              "'int'^'int'",
-                              "'int'^'int'",
-                              "'bool'^'value':'value'",
-                              "\0",
-                              "'var'^'value'",
-                              "'var'^'value'",
-                              "'var'^'value'",
-                              "'var'^'value'", //*=
-                              "'var'^'int'",
-                              "'var'^'int'",
-                              "'var'^'int'",
-                              "'var'^'int'",
-                              "'var'^'int'",
-                              "'var'^'int'",
-                              "'var'^'int'",
-                              "'value'^'value'"
-                             };
+const char *keywordSynt[] = {
+    "^ 'int' ?':RET';", //return
+    "^('bool') 'exprList'", //while 
+    "^('bool') 'exprList'", //if
+    "^('expr';'expr';'expr' ?':FOR') 'exprList'" //for
+};
+
+const char *operatorSynt[] = {
+    "^ 'macro'",
+    "^ 'asmLine'",
+    "^'expr')",
+    "\0",
+    "^'int']",
+    "\0",
+    "'structObj'^'var'",
+    "'macroList'^'macro'",
+    "'int'^",
+    "'int'^",
+    "'expr +COLAVAILIABLE'^'colExpr'"
+    "'int'^'int' | 'char`'^'char`'",
+    "'int'^'int' | 'char`'^'int'",
+    "^'bool",
+    "^'int'",
+    "^'var'",
+    "^'var'",
+    "^('ANY')",
+    "^('macro', 'int') | ^('macro')",
+    "'int'^'int' | 'char`'^'int'",
+    "'int'^'int'",
+    "'int'^'int'",
+    "'int'^'int'",
+    "'int'^'int'",
+    "'int'^'int'",
+    "'int'^'int'",//<=
+    "'int'^'int'",
+    "'int'^'int'",
+    "'expr -void'^'expr -void'",
+    "'expr -void'^'expr -void'",
+    "'int'^'int'",
+    "'int'^'int'",
+    "'int'^'int'",
+    "'bool'^'value':'value'",
+    "\0",
+    "'var'^'value'",
+    "'var'^'value'",
+    "'var'^'value'",
+    "'var'^'value'", //*=
+    "'var'^'int'",
+    "'var'^'int'",
+    "'var'^'int'",
+    "'var'^'int'",
+    "'var'^'int'",
+    "'var'^'int'",
+    "'var'^'int'",
+    "'value'^'value'"
+};
 
 token_t prevToken, currToken, nextToken;
 
@@ -109,7 +112,7 @@ bool syntCheck(int i) {
     return false;
 }
 
-void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
+void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
     if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
 
     bool inSect = false, incl = false, excl = false;
@@ -125,6 +128,7 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
 
                 return;
             }
+
             if(syntList[currToken.type - 1][i] == '\'') {
                 inSect = false;
 
@@ -196,7 +200,7 @@ void insertSyntList(struct syntStruct_s *syntaxList, int syntLoc) {
     }
 }
 
-struct syntStruct_s {
+struct syntStruct_t {
     bool    dirDefined;
     char   *value;
     int8_t *exclude;
