@@ -97,6 +97,8 @@ bool checkTokenSyntax(int tokenNum) {
 }
 
 bool syntCheck(int i) {
+    if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
+
     struct syntStruct_s *syntaxUse;
     insertSyntList(syntaxUse, i);
     if(bError) return false;
@@ -113,8 +115,6 @@ bool syntCheck(int i) {
 }
 
 void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
-    if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
-
     bool inSect = false, incl = false, excl = false;
     char *currText[2] = {"", ""};
 
