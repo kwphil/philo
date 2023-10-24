@@ -1,5 +1,7 @@
 #include <stdlib.h>
+#include <stdbool.h>
 #include <string.h>
+#include <stdint.h>
 
 void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
     bool inSect = false, incl = false, excl = false;
