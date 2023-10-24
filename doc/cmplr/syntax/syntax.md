@@ -5,3 +5,4 @@ Syntax is used constantly, so in most languages it may be difficult to make it f
 
 [The syntax](srcp/syntax.c)
 
+[How to use the syntax](doc/cmplr/syntax/syntaxList.md)

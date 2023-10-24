@@ -5,4 +5,4 @@ Syntax has been made easily to append to it. You can add any sort of operator/ke
 
 [Syntax source code](srcp/syntax)
 
-[Syntax documentation](doc/cmplr/syntax.md)
+[Syntax documentation](doc/cmplr/syntax/syntax.md)
