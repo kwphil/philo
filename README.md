@@ -67,4 +67,9 @@ In order to fit all the necessary applications to fit all this in, Philo has its
 - rust
 - pLinApp
 
+#### Usage
+```
+phacket -p <packet> -o {<options>}
+```
+
 PHACKET DOES NOT YET EXIST AND ALL NECESSARY PACKAGES WILL BE PUT IN ```PACKAGE``` DIR IN THE COMPILER FOR YOU UNTIL THE PACKAGE MANAGER IS BUILT
