@@ -5,6 +5,7 @@
 //If you are wanting to add some new syntax, you can access it in syntList.c
 void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc);
 
+//Used specifically and only for checking syntax, nothing else
 struct syntStruct_t {
     bool    dirDefined;
     bool    required;
