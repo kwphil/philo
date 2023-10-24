@@ -118,6 +118,7 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
     bool inSect = false, incl = false, excl = false;
     char *currText[2] = {"", ""};
 
+    syntaxList[j].required = false;
     for(int i = 0, j = 0; i < strlen(syntList[currToken.type - 1][syntLoc]); i++) {
         if(inSect) {
             if(incl && excl) {
@@ -202,11 +203,21 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
 
             continue;
         }
+
+        if(syntList[currToken.type - 1][syntLoc][i] == '?') {
+            syntaxList[j].required = true;
+
+            continue;
+        }
+
+        realloc(syntaxList[j].value, sizeof(syntaxList[j].value) + sizeof(char));
+        syntaxList[j].value[strlen(syntaxList[j].value) - 1] = syntList[currToken.type - 1][syntLoc][i];
     }
 }
 
 struct syntStruct_t {
     bool    dirDefined;
+    bool    required;
     char   *value;
     int8_t *exclude;
     int8_t *include;
