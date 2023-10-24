@@ -134,8 +134,8 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
 
                 strcpy(syntaxList[j++].value, currText);
 
-                realloc(currText, sizeof(char));
-                strcpy(currText, "");
+                realloc(currText[0], sizeof(char));
+                strcpy(currText[0], "");
             }
 
             if(syntList[currToken.type - 1] == '+') {
@@ -143,10 +143,15 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
                 realloc(currText[1], sizeof(char));
             }
 
+            if(syntList[currToken.type - 1] == '-') {
+                incl = true;
+                realloc(currText[1], sizeof(char))
+            }
+
             if(syntList[currToken.type - 1] == ' ') {
                 if(incl) {
                     int l = 0;
-                    while(syntaxList[j].include[l] != NULL);
+                    while(syntaxList[j].include[l] != NULL) l++;
                     realloc(sizeof(syntaxList[j].include, syntaxList[j].include * sizeof(*syntaxList[j].include)));
                     strcpy(syntaxList[j].include[l], currText[1]);
 
@@ -156,7 +161,7 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
                     continue;
                 } else if(excl) {
                     int l = 0;
-                    while(syntaxList[j].exclude[l] != NULL);
+                    while(syntaxList[j].exclude[l] != NULL) l++;
                     realloc(syntaxList[j].exclude, sizeof(syntaxList[j].exclude) * sizeof(*syntaxList[j].exclude));
                     strcpy(syntaxList[j].exclude[l], currText[1]);
 
@@ -169,7 +174,7 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
                 realloc(currText[1], sizeof(currText[1]) + sizeof(char));
                 currText[1][strlen(currText[1])] = syntList[currToken.type - 1];
             } else {
-                realloc(currText, sizeof(currText) + sizeof(char));
+                realloc(currText[0], sizeof(currText) + sizeof(char));
                 currText[strlen(currText) - 1] = syntList[currToken.type - 1][syntLoc][i];
             }
 
