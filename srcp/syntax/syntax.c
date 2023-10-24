@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdint.h>
 #include "../../srcc/file/read.h"
+#include "syntList.h"
 
 const char *syntList[][] = {*keywordSynt, *operatorSynt};
 
