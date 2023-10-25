@@ -12,6 +12,7 @@ const char *keywordSynt[] = {
     "^('bool') 'exprList'", //while 
     "^('bool') 'exprList'", //if
     "^('expr';'expr';'expr' ?':FOR') 'exprList'" //for
+    "^ 'retType' 'name' ?':' ?'::register' ?\"=<value>\";"
 };
 
 const char *operatorSynt[] = {
@@ -26,7 +27,7 @@ const char *operatorSynt[] = {
     "'int'^",
     "'int'^",
     "'expr +COLAVAILIABLE'^'colExpr'"
-    "'int'^'int' | 'char`'^'char`'",
+    "\"'int'^'int'\" | \"'char`'^'char`'\"",
     "'int'^'int' | 'char`'^'int'",
     "^'bool",
     "^'int'",
