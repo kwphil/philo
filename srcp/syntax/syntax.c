@@ -11,8 +11,9 @@ const char *keywordSynt[] = {
     "^ 'int' ?':RET';", //return
     "^('bool') 'exprList'", //while 
     "^('bool') 'exprList'", //if
-    "^('expr';'expr';'expr' ?':FOR') 'exprList'" //for
-    "^ 'retType' 'name' ?':' ?'::register' ?\"=<value>\";"
+    "^('expr';'expr';'expr' ?':FOR') 'exprList'", //for
+    "^ 'retType' 'name'?':'?'::register' ?\"=<value>\";", //var
+    "^ 'retType' 'name' (#'args') 'exprList'" //fn
 };
 
 const char *operatorSynt[] = {
