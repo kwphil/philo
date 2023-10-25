@@ -9,6 +9,7 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc);
 struct syntStruct_t {
     bool    dirDefined;
     bool    required;
+    bool    multiple;
     char   *value;
     int8_t *exclude;
     int8_t *include;
