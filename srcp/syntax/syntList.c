@@ -101,7 +101,9 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
         }
 
         if(syntList[currToken.type - 1][syntLoc][i] == '#') {
-            
+            syntaxList[j].multiple = true;
+
+            continue;
         }
 
         realloc(syntaxList[j].value, sizeof(syntaxList[j].value) + sizeof(char));
