@@ -100,6 +100,10 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
             continue;
         }
 
+        if(syntList[currToken.type - 1][syntLoc][i] == '#') {
+            
+        }
+
         realloc(syntaxList[j].value, sizeof(syntaxList[j].value) + sizeof(char));
         syntaxList[j].value[strlen(syntaxList[j].value) - 1] = syntList[currToken.type - 1][syntLoc][i];
     }
