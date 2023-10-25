@@ -16,4 +16,4 @@ The syntax list has its own syntax to use.
 #### Using ''
 - ##### + Used to specifically include specific types of the return
 - ##### - Used to exclude specific types of the return
-- :Type Denotes a specific colon operator in the file. Can be doubled up
+- :Type Denotes a specific colon operator in the file. Can be doubled up to represent more colon operators
