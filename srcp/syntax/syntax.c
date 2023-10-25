@@ -105,9 +105,15 @@ bool syntCheck(int i) {
     struct syntStruct_t *syntaxList;
     insertSyntList(syntaxList, i);
     if(bError) return false;
-    for(int i = 0; syntaxList[i].value[0] != )
+    if(matchstr(currToken.value, symbList[currToken.type - 1][syntLoc][0])) {
+        bError = true;
+        const char _sError[] = appendStr("Compiler Error: Unmatched token: ", currToken.value);
+        realloc(sError, sizeof(_sError));
+        strcpy(sError, _sError);
+        return false;
+    }
     for(int i = 0; syntaxList[i].value[0] != NULL; i++) {
-        if(matchType())
+        
     }
 
     bError = true;
