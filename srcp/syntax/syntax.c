@@ -100,6 +100,8 @@ bool checkTokenSyntax(int tokenNum) {
 }
 
 bool syntCheck(int i) {
+    uint8_t currTokenLoc = 0;
+
     if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
 
     struct syntStruct_t *syntaxList;
@@ -112,14 +114,9 @@ bool syntCheck(int i) {
         strcpy(sError, _sError);
         return false;
     }
-    for(int i = 0; syntaxList[i].value[0] != NULL; i++) {
-        
-    }
+    while(syntaxList[++currTokenLoc].value[0] != '^');
+    for(int i = 0; syntaxList[i].value[0] != NULL; i++)
+        if(!checkCurrSyntax(currToken, currTokenLoc, syntaxList, i)) return false;
 
-    bError = true;
-    const char _sError[] = "Compiler Error: Uncaught compiler error in syntax.c::106:99!";
-    realloc(sError, _sError);
-    strcpy(sError, _sError);
-    free(_sError);
-    return false;
+    return true;
 }
