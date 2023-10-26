@@ -106,7 +106,9 @@ bool syntCheck(int i) {
 
     struct syntStruct_t *syntaxList;
     insertSyntList(syntaxList, i);
+
     if(bError) return false;
+    
     if(matchstr(currToken.value, symbList[currToken.type - 1][syntLoc][0])) {
         bError = true;
         const char _sError[] = appendStr("Compiler Error: Unmatched token: ", currToken.value);
@@ -114,7 +116,9 @@ bool syntCheck(int i) {
         strcpy(sError, _sError);
         return false;
     }
+
     while(syntaxList[++currTokenLoc].value[0] != '^');
+
     for(int i = 0; syntaxList[i].value[0] != NULL; i++)
         if(!checkCurrSyntax(currToken, currTokenLoc, syntaxList, i)) return false;
 
