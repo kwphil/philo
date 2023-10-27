@@ -28,11 +28,10 @@ bool checkCurrSyntax(const token_t currToken, const uint8_t currTokenLoc,
 bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc, 
                       const struct syntStruct_t *syntaxList, 
                       const int currCheck, const uint tokenNum) 
-{
-    
+{    
     if(syntaxList[currCheck].dirDefined) 
-        return matchstr(syntaxList[currCheck][].value, 
+        return matchstr(syntaxList[currCheck].value, 
                         currFile.tokenList[tokenNum].value);
 
-
+    if()
 }
