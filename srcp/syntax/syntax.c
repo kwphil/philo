@@ -17,17 +17,17 @@ const char *keywordSynt[] = {
 };
 
 const char *operatorSynt[] = {
-    "^ 'macro'",
-    "^ 'asmLine'",
-    "^'expr')",
-    "\0",
-    "^'int']",
-    "\0",
-    "'structObj'^'var'",
-    "'macroList'^'macro'",
-    "'int'^",
-    "'int'^",
-    "'expr +COLAVAILIABLE'^'colExpr'"
+    "^ 'macro'", //#
+    "^ 'asmLine'", //%
+    "^'expr')", //(
+    "\0", //)
+    "^'int']", //[
+    "\0", //]
+    "'structObj'^'var'", //.
+    "'macroList'^'macro'", //->
+    "'int'^", //++
+    "'int'^", //--
+    "\0" //:
     "\"'int'^'int'\" | \"'char`'^'char`'\"",
     "'int'^'int' | 'char`'^'int'",
     "^'bool",
