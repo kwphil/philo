@@ -2,15 +2,20 @@
 
 bool checkCurrSyntax(const token_t currToken, const uint8_t currTokenLoc, 
                      const syntStruct_t *syntaxList, 
-                     const int currCheck, const uint tokenNum) 
+                     int currCheck, uint tokenNum) 
 {
     if(syntaxList[currCheck].multiple) {
         int i = 0;
         
-        while(syntList[tokenTypeToNum(syntaxList[currCheck].type)])
+        while(checkCurrSyntax0(getNextToken(tokenNum), 
+                               currTokenLoc + (++i), 
+                               syntaxList, 
+                               currCheck + i, 
+                               tokenNum + i))
+        
     }
     
-    return checkCurrSyntax0(currToken, currTokenLoc syntaxList, currCheck)
+    return checkCurrSyntax0(currToken, currTokenLoc syntaxList, currCheck, tokenNum);
 }
 
 bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc, 
@@ -19,6 +24,6 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
 {
     
     if(syntaxList[currCheck].dirDefined) 
-        return matchstr(syntaxList[currCheck].value, 
+        return matchstr(syntaxList[currCheck][].value, 
                         currFile.tokenList[tokenNum].value);
 }
