@@ -89,7 +89,7 @@ bool checkSyntax() {
 bool checkTokenSyntax(int tokenNum) {
     for(int i = 0; syntList[currToken.type - 1][i][0] != NULL; i++)
         if(matchstr(currToken.value, tokenTypeList[currToken.type - 1][i])) 
-            return syntCheck(i);
+            return syntCheck(i, tokenNum);
 
     //Return compiler error
     bError = true;
@@ -99,7 +99,7 @@ bool checkTokenSyntax(int tokenNum) {
     return false;
 }
 
-bool syntCheck(int i) {
+bool syntCheck(const int i, const int tokenNum) {
     uint8_t currTokenLoc = 0;
 
     if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
