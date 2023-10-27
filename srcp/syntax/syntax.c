@@ -120,7 +120,7 @@ bool syntCheck(const int i, const int tokenNum) {
     while(syntaxList[++currTokenLoc].value[0] != '^');
 
     for(int i = 0; syntaxList[i].value[0] != NULL; i++)
-        if(!checkCurrSyntax(currToken, currTokenLoc, syntaxList, i)) return false;
+        if(!checkCurrSyntax(currToken, currTokenLoc, syntaxList, i, tokenNum)) return false;
 
     return true;
 }
