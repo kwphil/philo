@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 #include "syntax.h"
 #include "../../srcc/string/string.h"
@@ -60,7 +59,7 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
                 strcpy(sError, _sError);
                 return false;
             }
-            
+
             return true;
         }
     }
