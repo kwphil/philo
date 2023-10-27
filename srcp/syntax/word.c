@@ -20,5 +20,5 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
     
     if(syntaxList[currCheck].dirDefined) 
         return matchstr(syntaxList[currCheck].value, 
-                        syntList[tokenTypeToNum(currFile.tokenList)]); //Needs work here
+                        currFile.tokenList[tokenNum].value);
 }
