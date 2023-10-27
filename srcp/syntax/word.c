@@ -41,9 +41,9 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
     }
 
     if(sizeof(syntaxList[currCheck].include) != sizeof(char)) {
-        for(int i = 0; syntaxList[currCheck].include[i][0]; i++) {
+        for(int i = 0; syntaxList[currCheck].include[i][0]; i++) 
             if(matchstr(syntaxList[currCheck].include[i], currFile.tokenList[tokenNum].type)) return true;  
-        }
+
         bError = true;
         const char _sError[] = appendStr(appendStr(appendStr("Expected: ", aToS(syntaxList[currCheck].include)), "But received: "), currFile.tokenList[tokenNum].value);
         realloc(sError, sizeof(_sError));
@@ -51,7 +51,7 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
         return false;
     }
     if(sizeof(syntaxList[currCheck].exclude) != sizeof(char)) {
-        for(int i = 0; syntaxList[currCheck].exclude[i][0] != NULL; i++) {
+        for(int i = 0; syntaxList[currCheck].exclude[i][0] != NULL; i++)
             if(!matchstr(syntaxList[currCheck].exclude[i], currFile.tokenList[tokenNum].type)) {
                 bError = true;
                 const char _sError[] = appendStr(appendStr(appendStr("Didn't expected: "), aToS(syntaxList[currCheck].exclude), "But received: "), currFile.tokenList[tokenNum].value);
@@ -62,5 +62,4 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
 
             return true;
         }
-    }
 }
