@@ -1,7 +1,7 @@
 #include "syntax.h"
 
 bool checkCurrSyntax(const token_t currToken, const uint8_t currTokenLoc, 
-                     const syntStruct_t *syntaxList, 
+                     const struct syntStruct_t *syntaxList, 
                      int currCheck, uint tokenNum) 
 {
     if(syntaxList[currCheck].multiple) {
@@ -19,7 +19,7 @@ bool checkCurrSyntax(const token_t currToken, const uint8_t currTokenLoc,
 }
 
 bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc, 
-                      const syntStruct_t *syntaxList, 
+                      const struct syntStruct_t *syntaxList, 
                       const int currCheck, const uint tokenNum) 
 {
     
