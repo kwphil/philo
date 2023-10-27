@@ -2,16 +2,19 @@
 
 bool checkCurrSyntax(const token_t currToken, const uint8_t currTokenLoc, 
                      const struct syntStruct_t *syntaxList, 
-                     int currCheck, uint tokenNum) 
+                     register int currCheck, register uint tokenNum) 
 {
     if(syntaxList[currCheck].multiple) {
-        int i = 0;
+        register int i = 0;
         
         while(checkCurrSyntax0(getNextToken(tokenNum), 
                                currTokenLoc + (++i), 
                                syntaxList, 
                                currCheck + i, 
                                tokenNum + i))
+        {
+            
+        }
         
     }
     

@@ -99,7 +99,7 @@ bool checkTokenSyntax(int tokenNum) {
     return false;
 }
 
-bool syntCheck(const int i, const int tokenNum) {
+bool syntCheck(const int i, register int tokenNum) {
     uint8_t currTokenLoc = 0;
 
     if(syntList[currToken.type - 1][syntLoc][0] == '\0') return true;
@@ -119,7 +119,7 @@ bool syntCheck(const int i, const int tokenNum) {
 
     while(syntaxList[++currTokenLoc].value[0] != '^');
 
-    for(int i = 0; syntaxList[i].value[0] != NULL; i++)
+    for(register uint i = 0; syntaxList[i].value[0] != NULL; i++)
         if(!checkCurrSyntax(currToken, currTokenLoc, syntaxList, i, tokenNum)) return false;
 
     return true;
