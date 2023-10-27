@@ -69,7 +69,7 @@ const char *operatorSynt[] = {
 token_t prevToken, currToken, nextToken;
 
 bool checkSyntax() {
-    int i = 0;
+    register int i = 0;
 
     prevToken.type = -1;
 
@@ -87,7 +87,7 @@ bool checkSyntax() {
 }
 
 bool checkTokenSyntax(int tokenNum) {
-    for(int i = 0; syntList[currToken.type - 1][i][0] != NULL; i++)
+    for(register int i = 0; syntList[currToken.type - 1][i][0] != NULL; i++)
         if(matchstr(currToken.value, tokenTypeList[currToken.type - 1][i])) 
             return syntCheck(i, tokenNum);
 
