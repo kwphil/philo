@@ -17,8 +17,6 @@ bool checkCurrSyntax(const token_t currToken, const uint8_t currTokenLoc,
                                currCheck + i, 
                                tokenNum + i)) if(bError) return false;
         
-        currCheck + i;
-        tokenNum + i;
         return true;
     }
     
@@ -29,9 +27,24 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
                       const struct syntStruct_t *syntaxList, 
                       const int currCheck, const uint tokenNum) 
 {    
-    if(syntaxList[currCheck].dirDefined) 
-        return matchstr(syntaxList[currCheck].value, 
-                        currFile.tokenList[tokenNum].value);
+    if(syntaxList[currCheck].dirDefined) { 
+        if(!matchstr(syntaxList[currCheck].value, currFile.tokenList[tokenNum].value)) {
+            bError = true;
+            const char _sError[] = appendStr(appendStr(appendStr("Expected: ", syntaxList[currCheck].value), "But received: "), currFile.tokenList[tokenNum].value);
+            realloc(sError, sizeof(_sError));
+            strcpy(sError, _sError);
+            return false;
+        }
+        
+        return true;
+    }
 
-    if()
+    if(sizeof(syntaxList[currCheck].include) != sizeof(char)) {
+        for(int i = 0; exclude[i][0] )
+    }
+    if(sizeof(syntaxList[currCheck].exclude) != sizeof(char)) {
+        for(int i = 0; exclude[i][0] != NULL; i++) {
+
+        }
+    }
 }
