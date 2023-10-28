@@ -83,7 +83,7 @@ void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
 
             //value
             const char _symbList[] = malloc(sizeof(symbList[currToken.type - 1][syntLoc]));
-            strcpy(symbList[currToken.type - 1][syntLoc]);
+            strcpy(symbList[currToken.type - 1][syntLoc], );
 
             realloc(syntaxList[j].value, _symbList);
             strcpy(syntaxList[j].value, _symbList);   

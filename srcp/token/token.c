@@ -24,7 +24,7 @@ token_t tokenizeWord(const char *currWord) {
   int i = 0, type = 0;
   token_t ret;
   
-  while(keywordList[i++][0] != NULL)
+  while(keywordList[++i][0] != NULL)
     if(strcmp(keywordList[i], currWord))
       goto ASSIGN_VALUE;
   type++;
