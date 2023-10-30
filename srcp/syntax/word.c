@@ -32,7 +32,7 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
     if(syntaxList[currCheck].dirDefined) { 
         if(syntaxList[currCheck].value == ';' && currFile.tokenList[tokenNum].value != ';' && SEMI_WARN_FLAG == true) {
             printf("Warning! Missing semicolon at %s::%d:%d\n", currFile.name, currFile.tokenList[tokenNum].loc.line, currFile.tokenList[tokenNum].loc.word);
-            printf("Note:Semicolons are not required but are recommended\n");
+            printf("Note: Semicolons are not required but are recommended\n");
         }
         if(!matchstr(syntaxList[currCheck].value, currFile.tokenList[tokenNum].value)) {
             bError = true;
