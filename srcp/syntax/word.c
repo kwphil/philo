@@ -70,5 +70,8 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
         }
     }
 
-    if()
+    if(!(syntaxList[currCheck].type == switchTypeToInt(currFile.tokenList[tokenNum].type))) {
+        bError = true;
+        const char _sError[] = append
+    }
 }
