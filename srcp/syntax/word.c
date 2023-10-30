@@ -30,11 +30,11 @@ bool checkCurrSyntax0(const token_t currToken, const uint8_t currTokenLoc,
     if(syntaxList[currCheck].optional) return true;
     
     if(syntaxList[currCheck].dirDefined) { 
-        if(syntaxList[currCheck].value == ';' && currFile.tokenList[tokenNum].value != ';' && SEMI_WARN_FLAG == true && SEMI_ERR_FLAG == false) {
+        if(syntaxList[currCheck].value == ';' && currFile.tokenList[tokenNum].value != ';' && SEMI_WARN_FLAG && !SEMI_ERR_FLAG) {
             printf("Warning! Missing semicolon at %s::%d:%d\n", currFile.name, currFile.tokenList[tokenNum].loc.line, currFile.tokenList[tokenNum].loc.word);
             printf("Note: Semicolons are not required but are recommended\n");
         }
-        if(!matchstr(syntaxList[currCheck].value, currFile.tokenList[tokenNum].value)) {
+        if((!matchstr(syntaxList[currCheck].value, currFile.tokenList[tokenNum].value)) || (SEMI_ERR_FLAG && currFile.tokenList[tokenNum].value == ';')) {
             bError = true;
             const char _sError[] = appendStr(appendStr(appendStr("Expected: ", syntaxList[currCheck].value), "But received: "), currFile.tokenList[tokenNum].value);
             realloc(sError, sizeof(_sError));
