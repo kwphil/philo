@@ -22,19 +22,19 @@ string_t substr(string_t str, int start, int end) {
 }
 
 char *appendStr(char *str, ...) {
-    va_list valist;
+    va_list args;
     char *ret = NULL;
     size_t totalLength = 1; 
     
-    va_start(valist, str);
+    va_start(args, str);
 
     char *currStr = str;
     while (currStr != NULL) {
         totalLength += strlen(currStr);
-        currStr = va_arg(valist, char *);
+        currStr = va_arg(args, char *);
     }
 
-    va_end(valist);
+    va_end(args);
 
     ret = (char *)malloc(totalLength);
 
@@ -42,14 +42,14 @@ char *appendStr(char *str, ...) {
         return NULL; 
     }
 
-    va_start(valist, str);
+    va_start(args, str);
     currStr = str;
     strcpy(ret, currStr);
-    while ((currStr = va_arg(valist, char *)) != NULL) {
+    while ((currStr = va_arg(args, char *)) != NULL) {
         strcat(ret, currStr);
     }
 
-    va_end(valist);
+    va_end(args);
 
     return ret;
 }
