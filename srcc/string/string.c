@@ -58,10 +58,9 @@ char *appendf(const char *str, ...) {
     va_list args;
     va_start(args, str);
 
-    // Calculate the size needed for the formatted string
     va_list args_copy;
     va_copy(args_copy, args);
-    int size = vsnprintf(NULL, 0, str, args_copy) + 1; // +1 for the null terminator
+    int size = vsnprintf(NULL, 0, str, args_copy) + 1; 
     va_end(args_copy);
 
     if (size <= 0) {
