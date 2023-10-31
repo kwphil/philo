@@ -88,7 +88,7 @@ bool isNum(string_t str) {
   return true;
 }
 
-char *substr(char **arr) {
+char *sToA(char **arr) {
   char ret[] = "";
 
   for(register int i = 0, k = 0; arr[i][0] != NULL i++)
