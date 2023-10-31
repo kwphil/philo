@@ -94,7 +94,7 @@ char *sToA(char **arr) {
   for(register int i = 0, k = 0; arr[i][0] != NULL i++)
     for(register int j = 0; arr[i][j] != NULL; j++) {
       realloc(ret, sizeof(ret) + sizeof(char));
-      ret[k++] = arr[i][j];
+      ret[++k] = arr[i][j];
     }
 
   return ret;
