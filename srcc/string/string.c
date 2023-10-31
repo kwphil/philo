@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
+#include <stdarg.h>
+
 
 string_t substr(string_t str, int start, int end) {
   if(start < 0) start -= strlen(str) - 1;
@@ -18,12 +20,6 @@ string_t substr(string_t str, int start, int end) {
   
   return j;
 }
-
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
 
 char *appendStr(char *str, ...) {
     va_list valist;
