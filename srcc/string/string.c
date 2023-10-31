@@ -40,7 +40,7 @@ char *appendStr(char *str, ...) {
 
     if (ret == NULL) {
         return NULL; 
-    }/
+    }
 
     va_start(args, str);
     currStr = str;
