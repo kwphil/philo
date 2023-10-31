@@ -19,11 +19,43 @@ string_t substr(string_t str, int start, int end) {
   return j;
 }
 
-string_t appendStr(string_t str1, string_t str2) {
-  char ret[strlen(str1) + strlen(str2)];
+#include <stdio.h>
+#include <stdarg.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
 
-  strcpy(ret, str1);
-  strcat(ret, str2);
+char *appendStr(char *str, ...) {
+    va_list valist;
+    char *ret = NULL;
+    size_t totalLength = 1; 
+    
+    va_start(valist, str);
+
+    char *currStr = str;
+    while (currStr != NULL) {
+        totalLength += strlen(currStr);
+        currStr = va_arg(valist, char *);
+    }
+
+    va_end(valist);
+
+    ret = (char *)malloc(totalLength);
+
+    if (ret == NULL) {
+        return NULL; 
+    }
+
+    va_start(valist, str);
+    currStr = str;
+    strcpy(ret, currStr);
+    while ((currStr = va_arg(valist, char *)) != NULL) {
+        strcat(ret, currStr);
+    }
+
+    va_end(valist);
+
+    return ret;
 }
 
 bool isNum(string_t str) {
