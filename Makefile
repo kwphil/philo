@@ -16,12 +16,12 @@ TARGET := build.elf
 all: $(TARGET)
 
 $(TARGET): $(OBJ)
-  @mkdir -p $(@D)
-  $(CC) -o $@ $^ $(LDFLAGS)
+    @mkdir -p $(@D)
+    $(CC) -o $@ $^ $(LDFLAGS)
 
 $OBJDIR/%.o: $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
-  @mkdir -p $(@D)
-  $(CC) $(CFLAGS) -c $< -o $@
+    @mkdir -p $(@D)
+    $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-  rm -rf $(OBJDIR) $(BINDIR)
+    rm -rf $(OBJDIR) $(BINDIR)

@@ -6,107 +6,102 @@
 
 void insertSyntList(struct syntStruct_t *syntaxList, int syntLoc) {
     bool inSect = false, incl = false, excl = false;
-    char *currText[2] = {"", ""};
+    char currText[2][256] = {"", ""}; // Change to a 2D array with a reasonable size
+
+    int j = 0; // Moved j outside the loop
 
     syntaxList[j].required = false;
-    for(int i = 0, j = 0; i < strlen(syntList[currToken.type - 1][syntLoc]); i++) {
-        if(inSect) {
-            if(incl && excl) {
+
+    for (int i = 0; i < strlen(syntList[currToken.type - 1][syntLoc]); i++) {
+        if (inSect) {
+            if (incl && excl) {
                 bError = true;
                 const char _sError[] = "Compiler Error! var incl & excl are both defined";
-                realloc(sError, sizeof(_sError));
+                realloc(sError, strlen(_sError) + 1); // Allocate enough space
                 strcpy(sError, _sError);
 
                 return;
             }
 
-            if(syntList[currToken.type - 1][i] == '\'') {
+            if (syntList[currToken.type - 1][syntLoc][i] == '\'') {
                 inSect = false;
 
-                strcpy(syntaxList[j++].value, currText);
+                strcpy(syntaxList[j].value, currText[0]);
 
-                realloc(currText[0], sizeof(char));
-                strcpy(currText[0], "");
+                currText[0][0] = '\0';
             }
 
-            if(syntList[currToken.type - 1] == '+') {
+            if (syntList[currToken.type - 1][syntLoc][i] == '+') {
                 incl = true;
-                realloc(currText[1], sizeof(char));
+                currText[1][0] = '\0';
             }
 
-            if(syntList[currToken.type - 1] == '-') {
-                incl = true;
-                realloc(currText[1], sizeof(char))
+            if (syntList[currToken.type - 1][syntLoc][i] == '-') {
+                excl = true;
+                currText[1][0] = '\0';
             }
 
-            if(syntList[currToken.type - 1] == ' ') {
-                if(incl) {
+            if (syntList[currToken.type - 1][syntLoc][i] == ' ') {
+                if (incl) {
                     int l = 0;
-                    while(syntaxList[j].include[l] != NULL) l++;
-                    realloc(sizeof(syntaxList[j].include, syntaxList[j].include * sizeof(*syntaxList[j].include)));
-                    strcpy(syntaxList[j].include[l], currText[1]);
+                    while (syntaxList[j].include[l] != NULL)
+                        l++;
+                    syntaxList[j].include[l] = strdup(currText[1]);
 
                     incl = false;
-                    realloc(currText[1], 0);
+                    currText[1][0] = '\0';
 
                     continue;
-                } else if(excl) {
+                } else if (excl) {
                     int l = 0;
-                    while(syntaxList[j].exclude[l] != NULL) l++;
-                    realloc(syntaxList[j].exclude, sizeof(syntaxList[j].exclude) * sizeof(*syntaxList[j].exclude));
-                    strcpy(syntaxList[j].exclude[l], currText[1]);
+                    while (syntaxList[j].exclude[l] != NULL)
+                        l++;
+                    syntaxList[j].exclude[l] = strdup(currText[1]);
 
                     excl = false;
-                    realloc(currText[1], 0);
+                    currText[1][0] = '\0';
 
                     continue;
                 }
-            } else if(incl || excl) {
-                realloc(currText[1], sizeof(currText[1]) + sizeof(char));
-                currText[1][strlen(currText[1])] = syntList[currToken.type - 1];
+            } else if (incl || excl) {
+                strcat(currText[1], &syntList[currToken.type - 1][syntLoc][i]);
             } else {
-                realloc(currText[0], sizeof(currText) + sizeof(char));
-                currText[strlen(currText) - 1] = syntList[currToken.type - 1][syntLoc][i];
+                strcat(currText[0], &syntList[currToken.type - 1][syntLoc][i]);
             }
 
-            continue;            
+            continue;
         }
 
-        if(syntList[currToken.type - 1][syntLoc][i] == '\'') {
+        if (syntList[currToken.type - 1][syntLoc][i] == '\'') {
             inSect = true;
+            continue;
+        }
+
+        if (syntList[currToken.type - 1][syntLoc][i] == '^') {
+            syntaxList[j].dirDefine = true;
+
+            // value
+            syntaxList[j].value = strdup(symbList[currToken.type - 1][syntLoc]);
+            syntaxList[j].exclude = NULL;
+            syntaxList[j].include = NULL;
+
+            j++;
 
             continue;
         }
 
-        if(syntList[currToken.type - 1][syntLoc][i] == '^') {
-            syntaxList[j++].dirDefine = true;
-
-            //value
-            const char _symbList[] = malloc(sizeof(symbList[currToken.type - 1][syntLoc]));
-            strcpy(symbList[currToken.type - 1][syntLoc], );
-
-            realloc(syntaxList[j].value, _symbList);
-            strcpy(syntaxList[j].value, _symbList);   
-
-            syntaxList[j].exclude = -1;
-            syntaxList[j].include = -1;
-
-            continue;
-        }
-
-        if(syntList[currToken.type - 1][syntLoc][i] == '?') {
+        if (syntList[currToken.type - 1][syntLoc][i] == '?') {
             syntaxList[j].required = true;
 
             continue;
         }
 
-        if(syntList[currToken.type - 1][syntLoc][i] == '#') {
+        if (syntList[currToken.type - 1][syntLoc][i] == '#') {
             syntaxList[j].multiple = true;
 
             continue;
         }
 
-        realloc(syntaxList[j].value, sizeof(syntaxList[j].value) + sizeof(char));
-        syntaxList[j].value[strlen(syntaxList[j].value) - 1] = syntList[currToken.type - 1][syntLoc][i];
+        strcat(currText[0], &syntList[currToken.type - 1][syntLoc][i]);
     }
 }

@@ -4,3 +4,5 @@
 #include "../types/struct.h"
 
 extern token_t tokenize(char *fileOutput);
+
+#endif
