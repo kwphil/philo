@@ -1,10 +1,10 @@
 #ifndef ERROR_H
 #define ERROR_H
 
-#include "stdbool.h"
+#include <stdbool.h>
 
-bool bError;
-char *sError;
+extern bool bError;
+extern char *sError;
 
 void setErr();
 
