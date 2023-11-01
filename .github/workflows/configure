@@ -6,9 +6,9 @@
 CC=gcc
 CFLAGS="-Wall -Wextra"
 LDFLAGS="-lm"
-SRCDIRS="srcc srcp cmplr"
-OBJDIR="obj"
-BINDIR="bin"
+SRCDIRS="srcc srcp cmplr asm"
+OBJDIR=".build/obj"
+BINDIR=".build/bin"
 
 # Define source files
 SOURCES=""
