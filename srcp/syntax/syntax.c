@@ -87,7 +87,7 @@ bool checkSyntax() {
 }
 
 bool checkTokenSyntax(int tokenNum) {
-    for(register int i = 0; syntList[currToken.type - 1][i][0] != NULL; i++)
+    for(register int i = 0; syntList[currToken.type - 1][i][0] != NULL; ++i)
         if(matchstr(currToken.value, tokenTypeList[currToken.type - 1][i])) 
             return syntCheck(i, tokenNum);
 
