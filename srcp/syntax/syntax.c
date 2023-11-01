@@ -93,7 +93,7 @@ bool checkTokenSyntax(int tokenNum) {
 
     //Return compiler error
     bError = true;
-    char _sError[] = appendStr("Compiler Error: Uncaught token: ", currToken.value)
+    char _sError[] = appendStr("Compiler Error: Uncaught token: ", currToken.value);
     realloc(sError, strlen(_sError));
     strcpy(sError, _sError);
     return false;
