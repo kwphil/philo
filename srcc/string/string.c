@@ -6,7 +6,7 @@
 #include <stdarg.h>
 
 
-string_t substr(string_t str, int start, int end) {
+string_t substr(const string_t str, const int start, const int end) {
   if(start < 0) start -= strlen(str) - 1;
   if(end <= 0) end -= strlen(str) - 1;
 
@@ -21,7 +21,7 @@ string_t substr(string_t str, int start, int end) {
   return j;
 }
 
-char *appendStr(char *str, ...) {
+char *appendStr(const char *str, ...) {
     va_list args;
     char *ret = NULL;
     size_t totalLength = 1; 
@@ -81,14 +81,14 @@ char *appendf(const char *str, ...) {
     return ret;
 }
 
-bool isNum(string_t str) {
+bool isNum(const string_t str) {
   while(str[i] != NULL)
     if(!isdigit(str[i])) return false;
 
   return true;
 }
 
-char *sToA(char **arr) {
+char *sToA(const char **arr) {
   char ret[] = "";
 
   for(register int i = 0, k = 0; arr[i][0] != NULL i++)
