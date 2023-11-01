@@ -6,40 +6,34 @@
 #include "../../srcp/types/struct.h"
 #include "../../srcp/types/types.h"
 
-void build(const asm_t *asmList, const char argv[]) {
-    char fileContents[] = "section .text 
-                             global _start 
-                             _start: ";
+void build(const asm_t *asmList, const char *argv) {
+    char fileContents[10000] = "section .text\nglobal _start\n_start: ";
     int i = 0, loc = 0, sect = 0;
 
-    while(1) {
-        while(asmList[i++].ins[0] != NULL) {
-            if(asmList[i].section != sect || asmList[i].loc != loc) 
+    while (1) {
+        while (asmList[i].ins[0] != '\0') {
+            if (asmList[i].section != sect || asmList[i].loc != loc)
                 continue;
 
-            realloc(fileContents, sizeof(fileContents) + strlen(asmList[i].ins) + sizeof(char)); //The original file length, the new instruction, and a space to separate
-
-            strcat(fileContents, appendStr(asmList[i].ins, " "));
-            free(currIns);
+            strcat(fileContents, asmList[i].ins);
+            strcat(fileContents, " ");
             i = 0;
             loc++;
         }
 
-        if(sect <= 3) {
+        if (sect <= 3) {
             loc = 0;
-            realloc(fileContents, sizeof(fileContents) + (sizeof(char) * 13)) // section .(sect)
-            strcat(fileContents, "section .")
-            if(sect == 1) strcat(fileContents, "data ");
-            else(strcat(fileContents, "bss "));
+            strcat(fileContents, "section .");
+            if (sect == 1) strcat(fileContents, "data ");
+            else strcat(fileContents, "bss ");
             sect++;
         } else break;
     }
 
     writeFile("temp.s", fileContents);
-    
-    free(fileContents);
 
+    // Execute the assembler with the correct path
     char *argList[] = {"nasm", "temp.s", "-o", "build.bin", NULL};
-    execv("nasm", argList);
+    execvp("nasm", argList);
     remove("temp.s");
 }

@@ -1,7 +1,7 @@
 #include "error.h"
 #include "../../srcc/file/read.h"
 
-extern bool bError;
+bool bError;
 
 void setErr() {
     if(!bError) return;

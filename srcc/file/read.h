@@ -2,10 +2,11 @@
 #define CREAD_H
 
 #include "../../srcp/types/struct.h"
+#include <stdbool.h>
 
-file_t currFile;
-loc_t currLoc;
-int fileLen;
+extern file_t currFile;
+extern loc_t currLoc;
+extern int fileLen;
 
 /*
  * Use this after adding/subbing from the file in order to get the correct file length
@@ -13,8 +14,8 @@ int fileLen;
 void setFileLen();
 
 /*
- *  Sets the current word to the next availabel word. This will mainly be used in 
- *  token.c so is built to handle operators
+ * Sets the current word to the next available word. This will mainly be used in 
+ * token.c so is built to handle operators
  */
 void nextWord(const bool includeOperator);
 

@@ -5,47 +5,49 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-char * substr(const char * str, const int start, const int end) {
-  int _start = start, _end = end;
-  
-  if(_start < 0) _start -= strlen(str) - 1;
-  if(_end <= 0) _end -= strlen(str) - 1;
+char *substr(const char *str, const int start, const int end) {
+    int _start = start, _end = end;
+    
+    if (_start < 0) _start += strlen(str);
+    if (_end <= 0) _end += strlen(str);
 
-  char *ret = (char *)malloc((size_t)_end - _start + 1);
+    char *ret = (char *)malloc(_end - _start + 2);
 
-  for(int i = _start, j = 0; i < _end; i++) {
-    ret[j] = str[i];
-  }
-  
-  return ret;
+    for (int i = _start, j = 0; i <= _end; i++) {
+        ret[j] = str[i];
+        j++;
+    }
+
+    ret[_end - _start + 1] = '\0'; // Null-terminate the result
+    return ret;
 }
 
 char *appendStr(const char *str, ...) {
     va_list args;
-    char *ret = NULL;
-    size_t totalLength = 1; 
-    
     va_start(args, str);
 
-    char *currStr = str;
+    size_t totalLength = strlen(str);
+
+    const char *currStr = va_arg(args, const char *);
     while (currStr != NULL) {
         totalLength += strlen(currStr);
-        currStr = va_arg(args, char *);
+        currStr = va_arg(args, const char *);
     }
 
     va_end(args);
 
-    ret = (char *)malloc(totalLength);
+    char *ret = (char *)malloc(totalLength + 1); // Include space for the null terminator
 
     if (ret == NULL) {
-        return NULL; 
+        return NULL;
     }
 
     va_start(args, str);
-    currStr = str;
-    strcpy(ret, currStr);
-    while ((currStr = va_arg(args, char *)) != NULL) {
+    strcpy(ret, str);
+    currStr = va_arg(args, const char *);
+    while (currStr != NULL) {
         strcat(ret, currStr);
+        currStr = va_arg(args, const char *);
     }
 
     va_end(args);
@@ -59,7 +61,7 @@ char *appendf(const char *str, ...) {
 
     va_list args_copy;
     va_copy(args_copy, args);
-    int size = vsnprintf(NULL, 0, str, args_copy) + 1; 
+    int size = vsnprintf(NULL, 0, str, args_copy) + 1;
     va_end(args_copy);
 
     if (size <= 0) {
@@ -68,6 +70,7 @@ char *appendf(const char *str, ...) {
     }
 
     char *ret = (char *)malloc(size);
+
     if (ret == NULL) {
         va_end(args);
         return NULL;
@@ -80,27 +83,37 @@ char *appendf(const char *str, ...) {
     return ret;
 }
 
-bool isNum(const char * str) {
-  int i = 0;
+bool isNum(const char *str) {
+    int i = 0;
     
-  while(str[i] != NULL)
-    if(!isdigit(str[i])) return false;
+    while (str[i] != '\0') {
+        if (!isdigit(str[i])) {
+            return false;
+        }
+        i++;
+    }
 
-  return true;
+    return true;
 }
 
 char *sToA(const char **arr) {
-  char ret[] = "";
+    int length = 0;
 
-  for(register int i = 0, k = 0; arr[i][0] != NULL; i++)
-    for(register int j = 0; arr[i][j] != NULL; j++) {
-      realloc(ret, sizeof(ret) + sizeof(char));
-      ret[++k] = arr[i][j];
+    for (int i = 0; arr[i] != NULL; i++) {
+        length += strlen(arr[i]);
     }
 
-  return ret;
-}
+    char *ret = (char *)malloc(length + 1); // Include space for the null terminator
+    int k = 0;
 
-int main() {
-    return 0;
+    for (int i = 0; arr[i] != NULL; i++) {
+        for (int j = 0; arr[i][j] != '\0'; j++) {
+            ret[k] = arr[i][j];
+            k++;
+        }
+    }
+
+    ret[length] = '\0'; // Null-terminate the result
+
+    return ret;
 }
