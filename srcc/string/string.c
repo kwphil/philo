@@ -1,24 +1,23 @@
-#include "../../srcp/types/types.h"
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <stdio.h>
 
+char * substr(const char * str, const int start, const int end) {
+  int _start = start, _end = end;
+  
+  if(_start < 0) _start -= strlen(str) - 1;
+  if(_end <= 0) _end -= strlen(str) - 1;
 
-string_t substr(const string_t str, const int start, const int end) {
-  if(start < 0) start -= strlen(str) - 1;
-  if(end <= 0) end -= strlen(str) - 1;
+  char *ret = (char *)malloc((size_t)_end - _start + 1);
 
-  char ret[end - start + 1];
-
-  for(int i = start, j = 0; i < end; i++) {
+  for(int i = _start, j = 0; i < _end; i++) {
     ret[j] = str[i];
-
-    j++;
   }
   
-  return j;
+  return ret;
 }
 
 char *appendStr(const char *str, ...) {
@@ -81,7 +80,9 @@ char *appendf(const char *str, ...) {
     return ret;
 }
 
-bool isNum(const string_t str) {
+bool isNum(const char * str) {
+  int i = 0;
+    
   while(str[i] != NULL)
     if(!isdigit(str[i])) return false;
 
@@ -91,11 +92,15 @@ bool isNum(const string_t str) {
 char *sToA(const char **arr) {
   char ret[] = "";
 
-  for(register int i = 0, k = 0; arr[i][0] != NULL i++)
+  for(register int i = 0, k = 0; arr[i][0] != NULL; i++)
     for(register int j = 0; arr[i][j] != NULL; j++) {
       realloc(ret, sizeof(ret) + sizeof(char));
       ret[++k] = arr[i][j];
     }
 
   return ret;
+}
+
+int main() {
+    return 0;
 }
