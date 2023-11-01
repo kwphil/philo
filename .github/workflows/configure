@@ -14,7 +14,7 @@ BINDIR=".build/bin"
 SOURCES=""
 
 for dir in $SRCDIRS; do
-  SOURCES="$SOURCES $(find $dir -name '*.c')"
+    SOURCES="$SOURCES $(find $dir -name '*.c')"
 done
 
 # Define build target
@@ -33,9 +33,9 @@ mkdir -p $OBJDIR
 
 # Build the project
 for src in $SOURCES; do
-  obj="${OBJDIR}/${src##*/.c}.o"
-  mkdir -p $(dirname $obj)
-  $CC $CFLAGS -c $src -o $obj
+    obj="${OBJDIR}/${src##*/.c}.o"
+    mkdir -p $(dirname $obj)
+    $CC $CFLAGS -c $src -o $obj
 done
 
 # Link the project
