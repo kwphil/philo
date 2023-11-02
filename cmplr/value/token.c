@@ -8,3 +8,11 @@ token_t defaultToken() {
     ret.loc.word = -1;
     ret.loc.line = -1;
 }
+
+token_t setToken(int type, char *value, loc_t loc) {
+    token_t ret;
+    
+    ret.type = type;
+    ret.value = value;
+    ret.loc = loc;
+}
