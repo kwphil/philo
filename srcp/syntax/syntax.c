@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdint.h>
 #include "../../srcc/file/read.h"
+#include "../../cmplr/default/token.h"
 #include "syntList.h"
 
 const char *syntList[][] = {*keywordSynt, *operatorSynt};
@@ -73,6 +74,7 @@ bool checkSyntax() {
 
     prevToken.type = -1;
 
+    prevToken = defaultToken();
     currToken = currFile.tokenList[0];
     nextToken = currFile.tokenList[1];
     while(currFile.tokenList[i++][0] != NULL) {
