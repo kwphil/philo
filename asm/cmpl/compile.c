@@ -17,6 +17,4 @@ bool asmCompile() {
             if(bError) return false;
         }
     }
-
-    
 }
