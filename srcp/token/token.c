@@ -63,6 +63,8 @@ token_t tokenizeWord(const char *currWord) {
         }
     }
 
+    //tokenType
+
     strcpy(ret.value, currWord);
     ret.loc.line = currLoc.line;
     ret.loc.word = currLoc.word;
