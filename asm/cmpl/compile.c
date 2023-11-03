@@ -4,6 +4,8 @@
 #include "../../srcp/macro/read.h"
 #include "../../srcp/types/struct.h"
 
+static funcOrg_t *CMPL_LIST 
+
 bool asmCompile() {
     printf("No syntax errors caught! Starting the compile process!");
 
@@ -17,4 +19,9 @@ bool asmCompile() {
             if(bError) return false;
         }
     }
+}
+
+void setCMPL_LIST() {
+    CMPL_LIST[0].data = "OS";
+    CMPL_LIST[0].func = *OSCompile();
 }

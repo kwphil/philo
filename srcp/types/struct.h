@@ -32,6 +32,6 @@ typedef struct __file_t {
 typedef struct __funcOrg_t {
   char *data;
   void *func;
-}
+} funcOrg_t
 
 #endif
