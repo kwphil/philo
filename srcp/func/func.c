@@ -4,15 +4,17 @@
 #include "../param/param.h"
 
 func_t parseFunc(file_t file, int tokenNum) {
-    func_t ret;
-
-    if(matchstr(fileList[file].tokenList[tokenNum].value, "fn")) {
+    if(!matchstr(fileList[file].tokenList[tokenNum].value, "fn")) {
         bError = true;
         const char _sError[] = appendStr("Compiler Error! Expected 'fn' but received: ", fileList[file].tokenList[tokenNum].value);
         realloc(sError, sizeof(_sError));
         strcpy(sError, _sError);
         return defaultFunc();
     }
+
+    func_t ret;
+
+    
 }
 
 func_t defaultFunc() {
