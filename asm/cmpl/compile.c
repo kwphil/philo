@@ -24,5 +24,5 @@ bool asmCompile() {
 
 void setCMPL_LIST() {
     CMPL_LIST[0].data = "OS";
-    CMPL_LIST[0].func = OSCompile; // Assuming OSCompile is a function pointer
+    CMPL_LIST[0].func = OSCompile;
 }
