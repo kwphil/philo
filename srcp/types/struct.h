@@ -29,4 +29,9 @@ typedef struct __file_t {
   asm_t *asmList;
 } file_t;
 
+typedef struct __funcOrg_t {
+  char *data;
+  void *func;
+}
+
 #endif
