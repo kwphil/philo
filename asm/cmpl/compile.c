@@ -23,6 +23,8 @@ bool asmCompile() {
 }
 
 void setCMPL_LIST() {
+    void (*osCompileFunc)() = OSCompile;
+
     CMPL_LIST[0].data = "OS";
     CMPL_LIST[0].func = OSCompile;
 }
