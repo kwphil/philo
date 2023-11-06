@@ -42,12 +42,14 @@ fn public int main() {
 
   %mov rbx, msg0
   %call print64
-  %msg0 db "Hello, World!",0
 
   print(readFile("txt/ex.txt"))
 
   return 0;
 }
+
+%section .data
+%msg0 db "Hello, World!",0
 ```
 
 If you notice on the last print, it seems to be missing a semicolon. There is another ability of Philo. Missing semicolons will only create warnings and will be fixed for you.
