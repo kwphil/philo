@@ -63,6 +63,8 @@ func_t parseFunc(const int file, const int tokenNum) {
     }
 
     ret.end = tokenNum + ++tokenNumOff;
+
+    return ret;
 }
 
 func_t defaultFunc() {
