@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 #include "func.h"
@@ -25,28 +26,52 @@ func_t parseFunc(const int file, const int tokenNum) {
         }
 
         ret.fnType = 0;
+        tokenNumOff++;
     }
 
     if(!fileList[file].tokenList[tokenNum + tokenNumOff].type == 4) {
         bError = true;
-        const char _sError[] = appendStr("Compiler Error! Expected ':' or <dataType> but received: ", fileList[file].tokenList[tokenNumOff + 1].value);
+        const char _sError[] = appendStr("Compiler Error! Expected <dataType> but received: ", fileList[file].tokenList[tokenNumOff + 1].value);
         realloc(sError, sizeof(_sError));
         strcpy(sError, _sError);
         return defaultFunc();
     }
 
     ret.retType = matchRetType(fileList[file].tokenList[tokenNum + tokenNumOff].type);
+    ret.name = (char *)malloc(sizeof(fileList[file].tokenList[tokenNum + ++tokenNumOff].value));
+    strcpy(ret.name, fileList[file].tokenList[tokenNum + tokenNumOff].value);
 
-    
+    int sectNum = 0;
+
+    ret.param = setParamList(file, tokenNum + tokenNumOff);
+    while(sectNum == 0 && fileList[file].tokenList[tokenNum + ++tokenNumOff].value != ')') {
+        if(fileList[file].tokenList[tokenNum + tokenNumOff].value == '(') {
+            sectNum++;
+            continue;
+        }
+        if(fileList[file].tokenList[tokenNum + tokenNumOff].value == ')') sectNum--;
+    }
+
+    ret.start = tokenNum + ++tokenNumOff;
+    sectNum = 0;
+    while(sectNum == 0 && fileList[file].tokenList[tokenNum + ++tokenNumOff].value != '}') {
+        if(fileList[file].tokenList[tokenNum + tokenNumOff].value == '{') {
+            sectNum++;
+            continue;
+        }
+        if(fileLIst[file].tokenList[tokenNum + tokenNumOff].value == '}') sectNum--;
+    }
 }
 
 func_t defaultFunc() {
     func_t ret;
 
-    fnType = 0;
-    retType = 0;
-    name = (char *)malloc(sizeof(char));
-    name = NULL;
-    param = (param_t)malloc(sizeof(param_t));
-    param = defaultParam();
+    ret.fnType = 0;
+    ret.retType = 0;
+    ret.name = (char *)malloc(sizeof(char));
+    ret.name = NULL;
+    ret.param = (param_t)malloc(sizeof(param_t));
+    ret.param = defaultParam();
+
+    return ret;
 }

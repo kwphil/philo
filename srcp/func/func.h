@@ -10,6 +10,8 @@ typedef struct __func_t {
     int retType;
     char *name;
     param_t *param;
+    int start;
+    int end;
 } func_t;
 
 #endif
