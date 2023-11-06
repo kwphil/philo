@@ -17,5 +17,7 @@ void OSCompile() {
         }
     }
 
-    for(uint16_t i = 0; funcList[i].name)
+    for(uint32_t i = 0; funcList[i].name != NULL; i++) {
+        
+    }
 }
