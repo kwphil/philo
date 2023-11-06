@@ -16,4 +16,6 @@ void OSCompile() {
             }
         }
     }
+
+    for(uint16_t i = 0; funcList[i].name)
 }
