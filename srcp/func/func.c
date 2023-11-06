@@ -61,6 +61,8 @@ func_t parseFunc(const int file, const int tokenNum) {
         }
         if(fileLIst[file].tokenList[tokenNum + tokenNumOff].value == '}') sectNum--;
     }
+
+    ret.end = tokenNum + ++tokenNumOff;
 }
 
 func_t defaultFunc() {
