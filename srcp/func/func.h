@@ -3,7 +3,7 @@
 
 #include "../param/param.h"
 
-func_t parseFunc(loc_t loc);
+func_t parseFunc(const int file, const int tokenNum);
 func_t defaultFunc();
 
 typedef struct __func_t {
