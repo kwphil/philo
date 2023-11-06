@@ -4,6 +4,7 @@
 #include "../param/param.h"
 
 func_t parseFunc(loc_t loc);
+func_t defaultFunc();
 
 typedef struct __func_t {
     int fnType;
