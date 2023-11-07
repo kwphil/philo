@@ -19,7 +19,6 @@ typedef struct __token_t {
 typedef struct __asm_t {
   int section;
   char *ins;
-  loc_t loc;
 } asm_t;
 
 typedef struct __file_t {

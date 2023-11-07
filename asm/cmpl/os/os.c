@@ -66,4 +66,8 @@ void OSCompile() {
         realloc(sError, _sError);
         appendStr(sError, _sError);
     }
+
+    //from here we can start putting the program together
+
+    
 }
