@@ -9,6 +9,7 @@ void OSCompile() {
     size_t funcSize = 0;
     bool mainSet = false;
     bool startSet = false;
+    int startLoc;
 
     for(uint16_t fileInc = 0; fileList[fileInc].name != NULL; fileInc++) {
         for(uint32_t tokenInc = 0; fileList[fileInc].tokenList[tokenInc].value != NULL; tokenInc++) {
@@ -31,6 +32,8 @@ void OSCompile() {
                 appendStr(sError, _sError);
                 return;
             }
+
+            startLoc = i;
         }
 
         if(strcmp(funcList[i].name, startSet)) {
@@ -41,6 +44,8 @@ void OSCompile() {
                 appendStr(sError, _sError);
                 return;
             }
+
+            startLoc = i;
         }
 
         for(uint32_t j = 0; funcList[j].name != NULL; j++) {
