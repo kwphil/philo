@@ -4,7 +4,9 @@
 #include <stdbool.h>
 #include "../../cmplr/error/error.h"
 
-const asm_t startMsg[] = {asm_t(0, "push bp"), asm_t(0, "mov sp, bp")}
+#define MAX_BYTE 512
+
+const asm_t startMsg[] = {asm_t(0, "push bp"), asm_t(0, "mov sp, bp")};
 
 void OSCompile() {
     func_t *funcList = (func_t)malloc(sizeof(func_t));
@@ -71,5 +73,8 @@ void OSCompile() {
 
     //from here we can start putting the program together
 
-    
+    uint8_t byteNum;
+    for(int i = MAX_BYTE; i < MAX_BYTE; i -= 2) {
+
+    }
 }
