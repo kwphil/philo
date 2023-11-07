@@ -4,6 +4,8 @@
 #include <stdbool.h>
 #include "../../cmplr/error/error.h"
 
+const asm_t startMsg[] = {asm_t(0, "push bp"), asm_t(0, "mov sp, bp")}
+
 void OSCompile() {
     func_t *funcList = (func_t)malloc(sizeof(func_t));
     size_t funcSize = 0;
