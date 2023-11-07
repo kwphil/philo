@@ -117,8 +117,14 @@ void OSCompile() {
 
     //from here we can start putting the program together
 
-    uint8_t byteNum;
-    for(int i = MAX_BYTE; i < MAX_BYTE; i -= 2) {
+    int currBytes;
+    size_t asmSize = 0;
+
+    for(currBytes = MAX_BYTE; currBytes < aLen(startMsg[]); currBytes -= 2) {
+        realloc(asmCompileList, sizeof(asm_t) * ++asmSize);
+        asmCompileList[asmSize - 1] = startMsg[MAX_BYTE - currBytes];
+    }
+    for(; currBytes < MAX_BYTE - 2; currBytes -= 2) {
 
     }
 }
