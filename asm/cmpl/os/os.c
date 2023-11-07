@@ -7,6 +7,7 @@
 #define MAX_BYTE 512
 
 const asm_t startMsg[] = {asm_t(0, "push bp"), asm_t(0, "mov sp, bp")};
+const asm_t bootPadding[] = {asm_t(0, "times 510-($-$$) db 0"), asm_t(0, "dw 0xaa55")};
 
 void OSCompile() {
     // Allocate memory for the funcList based on an initial size.
@@ -124,7 +125,11 @@ void OSCompile() {
         realloc(asmCompileList, sizeof(asm_t) * ++asmSize);
         asmCompileList[asmSize - 1] = startMsg[MAX_BYTE - currBytes];
     }
+
     for(; currBytes < MAX_BYTE - 2; currBytes -= 2) {
 
     }
+    realloc(asmCompileList, sizeof(asm_t) * asmSize += 2);
+    asmCompileList[asmSize - 2] = bootPadding[0];
+    asmCompileList[asmSize - 1] = bootPadding[1];
 }
