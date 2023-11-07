@@ -60,5 +60,10 @@ void OSCompile() {
         }
     }
 
-    
+    if((funcList[startLoc].retType != 1 && mainSet) || (funcList[startLoc].retType != 0 && startSet)) {
+        bError = true;
+        const char _sError = appendStr("start() or main() is defined incorrectly!\n received: ", printFunc(funcList[startLoc]), "\nNote: it should look like \nfn void start()\nfn int main(int argc, char *argv[])");
+        realloc(sError, _sError);
+        appendStr(sError, _sError);
+    }
 }
