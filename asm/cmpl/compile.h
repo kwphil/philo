@@ -2,6 +2,7 @@
 #define ACOMPILE_H
 
 extern funcOrg_t *CMPL_LIST;
+extern asm_t *asmCompileList;
 //Sets the values for the CMPL_LIST variable, in order to be used for later
 void setCMPL_LIST();
 

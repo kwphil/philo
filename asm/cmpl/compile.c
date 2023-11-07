@@ -5,6 +5,7 @@
 #include "../../srcp/types/struct.h"
 
 static funcOrg_t CMPL_LIST[1]; // Define an array with one element
+static asm_t *asmCompileList;
 
 bool asmCompile() {
     printf("No syntax errors caught! Starting the compile process!");
