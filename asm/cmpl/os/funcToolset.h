@@ -6,4 +6,10 @@
 void setOSToolset();
 extern toolset_t os;
 
+typedef struct __OSToolset_t {
+    char **bootloader;
+    void *convertToASM;
+    void *insertASM;
+} OSToolset_t;
+
 #endif
