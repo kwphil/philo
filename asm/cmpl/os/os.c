@@ -126,9 +126,14 @@ void OSCompile() {
         asmCompileList[asmSize - 1] = startMsg[MAX_BYTE - currBytes];
     }
 
-    for(; currBytes < MAX_BYTE - 2; currBytes -= 2) {
-
+    if(mainSet) {
+        os.InsertBootloader();
     }
+
+    for(; currBytes < MAX_BYTE - 2; currBytes -= 2) {
+        funcList[startLoc].name
+    }
+
     realloc(asmCompileList, sizeof(asm_t) * asmSize += 2);
     asmCompileList[asmSize - 2] = bootPadding[0];
     asmCompileList[asmSize - 1] = bootPadding[1];
