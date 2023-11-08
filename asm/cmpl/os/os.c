@@ -127,11 +127,11 @@ void OSCompile() {
     }
 
     if(mainSet) {
-        os.InsertBootloader();
+        realloc(asmCompileList, (size_t)asmSize += sizeof(os.bootloader));
     }
 
     for(; currBytes < MAX_BYTE - 2; currBytes -= 2) {
-        
+
     }
 
     realloc(asmCompileList, sizeof(asm_t) * asmSize += 2);
