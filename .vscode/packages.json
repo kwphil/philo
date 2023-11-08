@@ -9,7 +9,14 @@
       {
         "id":"philo-header",
         "extensions":[".phih"],
-        "aliases": ["Philo", "phic"]
+        "aliases": ["Philo", "phih"]
+      }
+    ],
+    "grammars": [
+      {
+        "languages":"philo",
+        "scopeName":"source.phic",
+        "path":"./syntaxes/philo.tmGrammar.json"
       }
     ]
   }
