@@ -1,5 +1,12 @@
 {
   "contributes": {
+    "iconThemes": [
+      {
+        "id": "philo-dark.png",
+        "label": "Philo-Dark",
+        "path": "./icons/philo-dark.png"
+      }
+    ],
     "languages": [
       {
         "id":"philo",
@@ -20,12 +27,6 @@
           "light": "./icons/philo-header-light.png",
           "dark": "./icons/philo-header-dark.png"
         }
-      }
-    ],
-
-    "iconThemes": [
-      {
-        
       }
     ]
   }
