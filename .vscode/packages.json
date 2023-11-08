@@ -1,32 +1,15 @@
 {
   "contributes": {
-    "iconThemes": [
-      {
-        "id": "philo-dark.png",
-        "label": "Philo-Dark",
-        "path": "./icons/philo-dark.png"
-      }
-    ],
     "languages": [
       {
         "id":"philo",
         "extensions": [".phic"],
         "aliases": ["Philo", "phic"],
-        "configuration": "./language-configuration.json",
-        "icon": {
-          "light": "./icons/philo-light.png",
-          "dark": "./icons/philo-dark.png"
-        }
       },
       {
         "id":"philo-header",
         "extensions":[".phih"],
         "aliases": ["Philo", "phic"],
-        "configuration": "./language-configuration.json",
-        "icon": {
-          "light": "./icons/philo-header-light.png",
-          "dark": "./icons/philo-header-dark.png"
-        }
       }
     ]
   }
