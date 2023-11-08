@@ -4,12 +4,12 @@
       {
         "id":"philo",
         "extensions": [".phic"],
-        "aliases": ["Philo", "phic"],
+        "aliases": ["Philo", "phic"]
       },
       {
         "id":"philo-header",
         "extensions":[".phih"],
-        "aliases": ["Philo", "phic"],
+        "aliases": ["Philo", "phic"]
       }
     ]
   }
