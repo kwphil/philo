@@ -131,7 +131,7 @@ void OSCompile() {
     }
 
     for(; currBytes < MAX_BYTE - 2; currBytes -= 2) {
-        funcList[startLoc].name
+        
     }
 
     realloc(asmCompileList, sizeof(asm_t) * asmSize += 2);
