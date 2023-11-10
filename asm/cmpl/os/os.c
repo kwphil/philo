@@ -15,6 +15,11 @@ void OSCompile() {
     func_t* funcList = (func_t*)malloc(initialFuncListSize * sizeof(func_t));
     if (funcList == NULL) {
         // Handle memory allocation error.
+        bError = true;
+        const char _sError[] = "Compiler Error! funcList was not allocated correctly!";
+        realloc(sError, _sError);
+        strcpy(sError, _sError);
+
         return;
     }
     size_t funcSize = 0;
