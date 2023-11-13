@@ -56,7 +56,7 @@ void OSCompile() {
     char* definedNames[funcSize] = {0};  // Initialize an array to hold function names.
 
     for (size_t i = 0; i < funcSize; i++) {
-        if (!strcmp(funcList[i].name, "main")) {
+        if (strcmp(funcList[i].name, "main")) {
             if (mainSet) {
                 bError = true;
                 const char _sError[] = "Multiple definitions of main function!";
@@ -68,7 +68,7 @@ void OSCompile() {
             mainSet = true;
         }
 
-        if (!strcmp(funcList[i].name, "start")) {
+        if (strcmp(funcList[i].name, "start")) {
             if (startSet) {
                 bError = true;
                 const char _sError[] = "Multiple definitions of start function!";
