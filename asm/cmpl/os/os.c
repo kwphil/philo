@@ -127,23 +127,7 @@ void OSCompile() {
     size_t asmSize = 0;
     int i = 0;
 
-    for(currBytes = MAX_BYTE; currBytes < aLen(startMsg[]); currBytes -= 2) {
-        realloc(asmCompileList, sizeof(asm_t) * ++asmSize);
-        asmCompileList[asmSize - 1] = startMsg[MAX_BYTE - currBytes];
-    }
-
-    if(mainSet) {
-        realloc(asmCompileList, (size_t)asmSize += sizeof(os.bootloader));
-        os.insertASM(os.bootloader);
-    }
-
-    for(; currBytes < MAX_BYTE - 2; currBytes -= 2) {
-        os.convert2ASM(0, ++i);
-    }
-
-    realloc(asmCompileList, sizeof(asm_t) * asmSize += 2);
-    asmCompileList[asmSize - 2] = bootPadding[0];
-    asmCompileList[asmSize - 1] = bootPadding[1];
-
-    while(os.convert2ASM(currFile, ++i))
+    cmpl.setCompileUntil("bits", 510);
+    os.compile2ASM(0, i);
+    os.addLines();
 }
