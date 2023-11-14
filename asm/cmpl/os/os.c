@@ -144,4 +144,6 @@ void OSCompile() {
     realloc(asmCompileList, sizeof(asm_t) * asmSize += 2);
     asmCompileList[asmSize - 2] = bootPadding[0];
     asmCompileList[asmSize - 1] = bootPadding[1];
+
+    while(os.convert2ASM(currFile, ++i))
 }
