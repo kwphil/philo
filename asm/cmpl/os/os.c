@@ -26,11 +26,11 @@ void OSCompile() {
 
     bool mainSet = false;
     bool startSet = false;
-    int startLoc;
+    uint32_t startLoc;
 
     for (uint16_t fileInc = 0; fileList[fileInc].name != NULL; fileInc++) {
         for (uint32_t tokenInc = 0; fileList[fileInc].tokenList[tokenInc].value != NULL; tokenInc++) {
-            os_set_func();
+            os_set_func(mainSet, startSet, startLoc);
         }
     }
 
