@@ -26,11 +26,11 @@ void OSCompile() {
 
     bool mainSet = false;
     bool startSet = false;
-    uint32_t startLoc;
+    int startLoc;
 
     for (uint16_t fileInc = 0; fileList[fileInc].name != NULL; fileInc++) {
         for (uint32_t tokenInc = 0; fileList[fileInc].tokenList[tokenInc].value != NULL; tokenInc++) {
-            os_set_func(mainSet, startSet, startLoc);
+            os_set_func();
         }
     }
 
@@ -111,27 +111,4 @@ void OSCompile() {
     cmpl.setCompileUntil("bits", 510);
     os.compile2ASM(0, i);
     os.addLines();
-}
-
-void os_set_func() {
-    if (!strcmp(fileList[fileInc].tokenList[tokenInc].value, "fn")) {
-        // Check if funcList needs to be expanded.
-        if (funcSize >= initialFuncListSize) {
-            initialFuncListSize *= 2;
-            func_t* newFuncList = (func_t*)realloc(funcList, initialFuncListSize * sizeof(func_t));
-            if (newFuncList == NULL) {
-                free(funcList);
-                // Handle memory allocation error.
-                return;
-            }
-            funcList = newFuncList;
-        }
-
-        funcList[funcSize] = parseFunc(fileInc, tokenInc);
-        if (bError) {
-            free(funcList);  // Free the memory allocated.
-            return;
-        }
-        funcSize++;
-    }
 }
