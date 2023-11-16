@@ -110,5 +110,6 @@ void OSCompile() {
 
     cmpl.setCompileUntil("bits", 510);
     os.compile2ASM(0, i);
-    os.addLines();
+    cmpl.addLines(bootPadding);
+    os.compile2ASM(-1, i);
 }
