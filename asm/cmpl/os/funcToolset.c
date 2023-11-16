@@ -2,6 +2,6 @@
 
 OStoolset_t os;
 
-void setToolset() {
+void setOSToolset() {
 
 }
