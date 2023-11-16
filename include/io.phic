@@ -1,5 +1,5 @@
 #include <string>
-#include "./pHeader/%PRIVATE%ERRLIST"
+#include "../header/%PRIVATE%ERRLIST"
 
 #fileFor  "OS"           //This file will only be used for OS infrastructure
 #setFuncB print, 16      //Set the bits of print to 16
