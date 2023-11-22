@@ -108,7 +108,7 @@ void OSCompile() {
     size_t asmSize = 0;
     int i = 0;
 
-    cmpl.setCompileUntil("bits", 510);
+    cmpl.setCompileUntil("num-bytes", 510);
     os.compile2ASM(0, i);
     cmpl.addLines(bootPadding);
     os.compile2ASM(-1, i);
