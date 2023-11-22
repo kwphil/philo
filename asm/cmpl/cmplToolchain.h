@@ -4,7 +4,8 @@
 #include <stdint.h>
 
 typedef struct {
-    void *setCompileUntil(char *input, uint64_t data)
+    void *setCompileUntil(char *input, uint64_t data);
+    void *addLines(asm_t *lines);
 } cmplToolchain_t;
 
 #endif
