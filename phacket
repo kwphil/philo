@@ -5,13 +5,16 @@ echo "Welcome to Phacket! Please enter a package name, or input LIST for a list 
 read INPUT
 
 if [ "$INPUT" = "LIST" ]; then
-    wget https://raw.github.com/kwphil/phacket/list.txt -O temp.txt
-    echo "Package list downloaded to $INPUT.txt"
+    wget https://raw.github.com/kwphil/phacket/main/list.txt -O phacket/temp.txt
+    less -FX phacket/temp.txt
 else
-    wget https://raw.github.com/kwphil/phacket/$INPUT.txt -O temp.txt
-    if [ ! -s "$INPUT.txt" ]; then
+    wget https://raw.github.com/kwphil/phacket/main/$INPUT.txt -O phacket/temp.txt
+    if [ ! -s "phacket/temp.txt" ]; then
         echo "Unknown package: $INPUT"
         exit 1
     fi
-    echo "Package $INPUT downloaded to $INPUT.txt"
+    
+    ./phacket/phacket-install
 fi
+
+rm temp.txt
