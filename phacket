@@ -14,7 +14,8 @@ else
         exit 1
     fi
     
-    ./phacket-install
+    
 fi
 
 rm temp.txt
+exit 0
