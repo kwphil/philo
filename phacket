@@ -1,0 +1,17 @@
+#!/bin/bash
+# Phacket - Simple Package Manager for Philo
+
+echo "Welcome to Phacket! Please enter a package name, or input LIST for a list of packages:"
+read INPUT
+
+if [ "$INPUT" = "LIST" ]; then
+    wget https://raw.github.com/kwphil/phacket/list.txt -O temp.txt
+    echo "Package list downloaded to $INPUT.txt"
+else
+    wget https://raw.github.com/kwphil/phacket/$INPUT.txt -O temp.txt
+    if [ ! -s "$INPUT.txt" ]; then
+        echo "Unknown package: $INPUT"
+        exit 1
+    fi
+    echo "Package $INPUT downloaded to $INPUT.txt"
+fi
