@@ -16,16 +16,8 @@ else
     fi
     
     line_count=$(wc -l < temp.txt)
-
-
+    ./bin/phacketDecode $line_count
 fi
 
-BAR='####################'
-
-for i in {1..$line_count}; do
-    echo -ne "\r${BAR:0:$i}"
-
-    
-done
 rm temp.txt
 exit 0
