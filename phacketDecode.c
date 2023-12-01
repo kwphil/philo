@@ -29,5 +29,5 @@ int main(int argc, char *argv[]) {
 }
 
 void newLine(char *currLine) {
-
+    
 }
