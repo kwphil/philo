@@ -25,3 +25,7 @@ $OBJDIR/%.o: $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 
 clean:
     rm -rf $(OBJDIR) $(BINDIR)
+
+install:
+    chmod +x script.sh
+    make
