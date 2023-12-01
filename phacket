@@ -16,6 +16,8 @@ else
     fi
     
     line_count=$(wc -l < temp.txt)
+
+
 fi
 
 rm temp.txt
