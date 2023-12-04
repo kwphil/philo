@@ -29,5 +29,7 @@ int main(int argc, char *argv[]) {
 }
 
 void newLine(char *currLine) {
-    
+    for(int i = 0; i != '\0'; i++) {
+        
+    }
 }
