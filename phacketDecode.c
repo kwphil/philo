@@ -35,20 +35,33 @@ void decodeLine(char *currLine) {
     //We want to inc the index in order to account for the whitespace between words
     switch(1) {
         case(strcmp(currWord, "new")):
-            if(strcmp(nextWord(currLine, index++)), "dir") system(appendStr("mkdir ", nextWord(currLine, index++)));
-            else system(appendStr("touch ", nextWord(currLine, index++)));
+            if(strcmp(nextWord(currLine, ++index)), "dir") system(appendStr("mkdir ", nextWord(currLine, index++)));
+            else system(appendStr("touch ", nextWord(currLine, ++index)));
         return;
         case(strcmp(currWord, "edit")):
-        
+            char *filename = nextWord(currLine, ++index);
+            currWord = nextWord(currWord, ++index);
+            if(strcmp(currWord, "append")) {
+                char *insert = (char *)malloc(sizeof(char));
+                size_t size = 1;
+                while(currLine[index++] != '\n') {
+                    realloc(insert, ++size);
+                    currLine[index] = insert[size - 1];
+                }
+
+                system(appendf("%s >> %s", insert, filename));
+                return;
+            }
+            if(strcmp(currWord, ))
+            return;
     }
 }
 
 char *nextWord(char *currLine, int index) {
-    size_t size 
     char *currWord = (char *)malloc(sizeof(char));
 
     for(int i = 0; i != ' '; i++) {
-        realloc(currWord, ++size);
+        realloc(currWord, i + 2);
         currWord[i] = currLine[index++];
     }
 
