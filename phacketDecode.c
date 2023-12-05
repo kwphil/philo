@@ -45,7 +45,8 @@ void decodeLine(char *currLine) {
             if(strcmp(currWord, "append")) {
                 currWord = nextWord(currWord, ++index);
                 if(strcmp(currWord, "FILE")) {
-                    system(appendf("cat %s >> %s", nextWord(currWord, ++index), filename));
+                    system()
+                    system(appendf("cat temp.txt >> %s", filename));
                     return;
                 }
                 if(strcmp(currWord, "TEXT")) {
