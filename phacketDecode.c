@@ -80,7 +80,7 @@ void decodeLine(char *currLine, int line, int c) {
 
 void getString() {
     if(strcmp(currWord, "FILE")) {
-        system(appendf("touch temp.txt && wget https://raw.githubusercontent.com/kwphil/phacket/%s/%s -O temp.txt", prgmName, nextWord(currWord, ++index)));
+        system(appendf("touch temp.txt && wget https://raw.githubusercontent.com/kwphil/phacket/main/%s/%s -O temp.txt", prgmName, nextWord(currWord, ++index)));
 
         return;
     }
