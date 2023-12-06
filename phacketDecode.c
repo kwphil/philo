@@ -32,12 +32,12 @@ void decodeLine(char *currLine) {
     int index = 0;
     char *currWord = nextWord(currLine, index);
 
-    //We want to inc the index in order to account for the whitespace between words
+    //We want to inc the index in order to account for the whitespace between 
     switch(1) {
         case(strcmp(currWord, "new")):
             currWord = nextWord(currLine, ++index);
-            if(strcmp(currWord), "dir") system(appendStr("mkdir ", nextWord(currLine, index++)));
-            else if(system(appendStr("touch ", nextWord(currLine, ++index))));
+            if(strcmp(currWord), "DIR") system(appendStr("mkdir ", nextWord(currLine, index++)));
+            else if(strcmp(currWord), "FILE") system(appendStr("touch ", nextWord(currLine, ++index)));
         return;
         case(strcmp(currWord, "edit")):
             char *filename = nextWord(currLine, ++index);
@@ -45,7 +45,10 @@ void decodeLine(char *currLine) {
             if(strcmp(currWord, "append")) {
                 currWord = nextWord(currWord, ++index);
                 if(strcmp(currWord, "FILE")) {
-                    system(appendf("cat %s >> %s", , filename));
+                    system(appendf("touch temp.txt && wget https://raw.githubusercontent.com/kwphil/phacket/%s -O temp.txt", nextWord(currWord, ++index)));
+                    system(appendf("cat %s >> %s", "temp.txt", filename));
+                    system("rm temp.txt");
+
                     return;
                 }
                 if(strcmp(currWord, "TEXT")) {
@@ -63,8 +66,24 @@ void decodeLine(char *currLine) {
             if(strcmp(currWord, "replace")) {
                 currWord = nextWord(currWord, ++index);
                 if(strcmp(currWord, "ALL")) {
-                    system("touch temp.txt");
-                    system(appendStr(nextWord(currWord, ++index)))
+                    if(strcmp(currWord, "FILE")) {
+                        system(appendf("touch temp.txt && wget https://raw.githubusercontent.com/kwphil/phacket/%s -O temp.txt", nextWord(currWord, ++index)));
+                        system(appendf("cat %s >> %s", "temp.txt", filename));
+                        system("rm temp.txt");
+
+                        return;
+                    }
+                if(strcmp(currWord, "TEXT")) {
+                    char *insert = (char *)malloc(sizeof(char));
+                    size_t size = 1;
+                    while(currLine[index++] != '\n') {
+                        realloc(insert, ++size);
+                        currLine[index] = insert[size - 1];
+                    }
+                    system(appendf("%s >> %s", insert, filename));
+                    
+                    return;
+                }
                 }
             }
             return;
