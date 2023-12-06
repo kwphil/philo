@@ -48,37 +48,21 @@ void decodeLine(char *currLine, int line, int c) {
             char *filename = nextWord(currLine, ++index);
             currWord = nextWord(currWord, ++index);
             if(strcmp(currWord, "append")) {
-                currWord = nextWord(currWord, ++index);
-                if(strcmp(currWord, "FILE")) {
-                    system(appendf("touch temp.txt && wget https://raw.githubusercontent.com/kwphil/phacket/%s -O temp.txt", nextWord(currWord, ++index)));
-                    system(appendf("cat %s >> %s", "temp.txt", filename));
-                    system("rm temp.txt");
-
-                    return;
-                }
-                if(strcmp(currWord, "TEXT")) {
-                    char *insert = (char *)malloc(sizeof(char));
-                    size_t size = 1;
-                    while(currLine[index++] != '\n') {
-                        realloc(insert, ++size);
-                        currLine[index] = insert[size - 1];
-                    }
-                    system(appendf("%s >> %s", insert, filename));
-                    
-                    return;
-                }
+                getString();
+                system(appendStr("temp.txt >> "))
             }
             if(strcmp(currWord, "replace")) {
                 currWord = nextWord(currWord, ++index);
                 if(strcmp(currWord, "ALL")) {
                     getString();
-                    system("temp.txt >> %s", filename)
+                    system(appendf("cp -f temp.txt %s && rm temp.txt", filename));
                 }
             }
     }
 }
 
 void getString() {
+    currWord = nextWord(currLine);
     if(strcmp(currWord, "FILE")) {
         system(appendf("touch temp.txt && wget https://raw.githubusercontent.com/kwphil/phacket/main/%s/%s -O temp.txt", prgmName, nextWord(currWord, ++index)));
 
@@ -101,7 +85,7 @@ void getString() {
     }
 }
 
-char *nextWord(char *currLine, int index) {
+char *nextWord(char *currLine) {
     char *currWord = (char *)malloc(sizeof(char));
 
     for(int i = 0; i != ' '; i++) {
