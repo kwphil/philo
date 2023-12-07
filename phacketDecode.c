@@ -45,23 +45,23 @@ void decodeLine(char *currLine, int line, int c, char *prgmName, char *currWord,
     if(strcmp(currWord, "new")) {
         currWord = nextWord(currLine, currWord, ++index);
         if(strcmp(currWord, "DIR")) system(appendStr("mkdir ", nextWord(currLine, currWord, index)));
-        else if(strcmp(currWord, "FILE")) system(appendStr("touch ", nextWord(currLine, currWord, index)));
+        else if(strcmp(currWord, "FILE")) system(appendStr("touch ", nextWord(currLine, currWord, ++index)));
         return;
     }
     if(strcmp(currWord, "edit")) {
-        char *filename = nextWord(currLine, currWord, index);
-        currWord = nextWord(currLine, currWord, index);
+        char *filename = nextWord(currLine, currWord, ++index);
+        currWord = nextWord(currLine, currWord, ++index);
         if(strcmp(currWord, "append")) {
-            nextWord(currLine, currWord, index);
+            nextWord(currLine, currWord, ++index);
             system(appendf("temp.txt >> %s && rm temp.txt", filename));
         }
         else if(strcmp(currWord, "replace")) {
-            currWord = nextWord(currLine, currWord, index);
+            currWord = nextWord(currLine, currWord, ++index);
             if(strcmp(currWord, "ALL")) {
-                nextWord(currLine, currWord, index);
+                nextWord(currLine, currWord, ++index);
                 system(appendf("cp -f temp.txt %s && rm temp.txt", filename));
             } else if(isNum(currWord)) {
-                nextWord(currLine, currWord, index);
+                nextWord(currLine, currWord, ++index);
                 system("$TEXT=$(cat temp.txt)");
                 system(appendf("sed '%d s/.*/$TEXT' %s && rm temp.txt", atoi(currWord), filename));
             } else {
