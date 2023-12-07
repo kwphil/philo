@@ -51,7 +51,7 @@ void decodeLine(char *currLine, int line, int c) {
             currWord = nextWord(currWord, ++index);
             if(strcmp(currWord, "append")) {
                 getString();
-                system(appendStr("temp.txt >> "))
+                system(appendf("temp.txt >> %s && rm temp.txt", filename));
             }
             else if(strcmp(currWord, "replace")) {
                 currWord = nextWord(currWord, ++index);
@@ -61,7 +61,7 @@ void decodeLine(char *currLine, int line, int c) {
                 } else if(isNum(currWord)) {
                     getString();
                     system("$TEXT=$(cat temp.txt)");
-                    system(appendf("sed '%d s/.*/$TEXT' %s", atoi(currWord), filename));
+                    system(appendf("sed '%d s/.*/$TEXT' %s && rm temp.txt", atoi(currWord), filename));
                 } else {
                     printf("Error at %d:%d. Data type: %s not recognized", line, c, currWord);
                     exit(-2);
