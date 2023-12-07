@@ -33,6 +33,8 @@ int main(int argc, char *argv[]) {
         decodeLine(currLine);
     }
 
+    free(prgmName);
+    free(currWord);
     return 0;
 }
 
@@ -51,13 +53,22 @@ void decodeLine(char *currLine, int line, int c) {
                 getString();
                 system(appendStr("temp.txt >> "))
             }
-            if(strcmp(currWord, "replace")) {
+            else if(strcmp(currWord, "replace")) {
                 currWord = nextWord(currWord, ++index);
                 if(strcmp(currWord, "ALL")) {
                     getString();
                     system(appendf("cp -f temp.txt %s && rm temp.txt", filename));
+                } else if(isNum(currWord)) {
+                    getString();
+                    system("$TEXT=$(cat temp.txt)");
+                    system(appendf("sed '%d s/.*/$TEXT' %s", atoi(currWord), filename));
+                } else {
+                    printf("Error at %d:%d. Data type: %s not recognized", line, c, currWord);
+                    exit(-2);
                 }
             }
+            free(filename);
+        return;
     }
 }
 
@@ -77,6 +88,7 @@ void getString() {
         }
         system(appendf("touch temp.txt && %s >> temp.txt", insert));
 
+        free(insert);
         return;
     }
     else {
@@ -86,7 +98,7 @@ void getString() {
 }
 
 char *nextWord(char *currLine) {
-    char *currWord = (char *)malloc(sizeof(char));
+    currWord = realloc(currWord, sizeof(char));
 
     for(int i = 0; i != ' '; i++) {
         realloc(currWord, i + 2);
