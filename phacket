@@ -16,7 +16,7 @@ else
     fi
     
     line_count=$(wc -l < temp.txt)
-    ./bin/phacketDecode $line_count
+    ./bin/phacketDecode $line_count $INPUT
     exit $?
 fi
 
