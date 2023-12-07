@@ -43,7 +43,7 @@ void decodeLine(char *currLine, int line, int c) {
     switch(1) {
         case(strcmp(currWord, "new")):
             currWord = nextWord(currLine, ++index);
-            if(strcmp(currWord), "DIR") system(appendStr("mkdir ", nextWord(currLine, index++)));
+            if(strcmp(currWord), "DIR") system(appendStr("mkdir ", nextWord(currLine, ++index)));
             else if(strcmp(currWord), "FILE") system(appendStr("touch ", nextWord(currLine, ++index)));
         return;
         case(strcmp(currWord, "edit")):
