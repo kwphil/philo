@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "read.h"
 #include "../../srcp/types/types.h"
 #include "../../cmplr/error/error.h"
 
