@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    for(int i = 0; file[i] != '\0'; i++) {
+    for(int i = 0; i < line_count; i++) {
         size_t size = 1;
         char *currLine = (char *)malloc(sizeof(char));
 
