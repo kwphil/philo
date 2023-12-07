@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
         size_t size = 1;
         char *currLine = (char *)malloc(sizeof(char));
 
-        for(int j = 0; file[j] != '\n'; i++) {
+        for (int j = 0; j < line_count; j++) {
             realloc(currLine, ++size);
             currLine[size - 1] = file[file_index++];
         }
