@@ -2,8 +2,6 @@
 #ifndef CFILE_H
 #define CFILE_H
 
-#include "../../srcp/types/type.h"
-
 //This will output the entire contents of a file, and will set the currFile for you
 char * readFile(const char * filename);
 
