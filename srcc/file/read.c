@@ -4,6 +4,10 @@
 #include <stdbool.h>
 #include "../../srcp/types/list.h"
 
+file_t currFile;
+loc_t currLoc;
+int fileLen;
+
 void setFileLen() {
     fileLen = strlen(currFile.contents);
 }

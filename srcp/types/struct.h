@@ -5,30 +5,30 @@
 
 //Specifically designed to have datatypes of type struct 
 
-typedef struct __loc_t {
+typedef struct {
   int line;
   int word;
 } loc_t;
 
-typedef struct __token_t {
-  string_t type;
+typedef struct {
+  char * type;
   int      value;
   loc_t    loc;
 } token_t;
 
-typedef struct __asm_t {
+typedef struct {
   int section;
   char *ins;
 } asm_t;
 
-typedef struct __file_t {
+typedef struct {
   char *name;
   char *contents;
   token_t *tokenList;
   asm_t *asmList;
 } file_t;
 
-typedef struct __funcOrg_t {
+typedef struct {
   char *data;
   void *func;
 } funcOrg_t;

@@ -8,11 +8,8 @@
 char * readFile(const char * filename) {
     FILE *fptr = fopen(filename, "r");
     if (fptr == NULL) {
-        bError = true;
-        char *sError = appendStr("Can't open file: ", filename);
-        realloc(sError, strlen(sError) + 1);
-        strcpy(sError, sError);
-        free(sError);
+        printf("Can't open file: %s", filename);
+        exit(-3);
         return NULL;
     }
     
@@ -36,7 +33,7 @@ char * readFile(const char * filename) {
     strcpy(currFile.contents, ret);
     realloc(currFile.name, strlen(filename) + 1);
     strcpy(currFile.name, filename);
-    strcpy(currFile.asmList[0], (char *)NULL);
+    strcpy(currFile.asmList[0].ins, '\0');
 
     return ret;
 }
