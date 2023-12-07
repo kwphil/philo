@@ -4,10 +4,6 @@
 #include "srcc/file/file.h"
 #include "srcc/string/string.h"
 
-char *prgmName;
-char *currWord = (char *)malloc(sizeof(char));
-uint32_t index = 0;
-
 int main(int argc, char *argv[]) {
     char *prgmName = (char *)malloc(sizeof(argv[2])), *currWord = (char *)malloc(sizeof(char));
     uint32_t index = 0;
