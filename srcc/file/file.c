@@ -3,7 +3,6 @@
 #include <string.h>
 #include "read.h"
 #include "../../srcp/types/types.h"
-#include "../../cmplr/error/error.h"
 
 char * readFile(const char * filename) {
     FILE *fptr = fopen(filename, "r");
