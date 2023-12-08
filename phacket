@@ -2,8 +2,20 @@
 # Phacket - Simple Package Manager for Philo
 # Creator - KWPhil https://www.github.com/kwphil
 
+usage() { echo "Usage: $0 [options] [package-name]\n
+                Options: \n
+                v: verbose: prints file changes
+                "; exit 1; }
+
+
 echo "Welcome to Phacket! Please enter a package name, or input LIST for a list of packages:"
 read INPUT
+
+while getopts ":s:p:" o; do
+    case "${o}" in
+        s)
+            s=${OPTARG}
+            
 
 if [ "$INPUT" = "LIST" ]; then
     wget https://raw.github.com/kwphil/phacket/main/list.txt -O temp.txt
