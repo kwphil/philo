@@ -4,36 +4,15 @@
 #include "srcc/file/file.h"
 #include "srcc/string/string.h"
 
-int main(int argc, char *argv[]) {
-    char *prgmName = (char *)malloc(sizeof(argv[2])), *currWord = (char *)malloc(sizeof(char));
-    uint32_t index = 0;
-    
-    int line_count = atoi(argv[1]);
-    int file_index = 0;
-    char *file = readFile("temp.txt");
+char *nextWord(char *currLine, char *currWord, uint32_t index) {
+    currWord = realloc(currWord, sizeof(char));
 
-    strcpy(prgmName, argv[2]);
-
-    if(file == NULL) {
-        printf("Error! could not read the file!");
-        return 1;
+    for(int i = 0; i != ' '; i++) {
+        realloc(currWord, i + 2);
+        currWord[i] = currLine[index++];
     }
 
-    for(int i = 0, j = 0; i < line_count; i++) {
-        size_t size = 1;
-        char *currLine = (char *)malloc(sizeof(char));
-
-        for (; currLine[j] != '\n'; j++) {
-            realloc(currLine, ++size);
-            currLine[size - 1] = file[file_index++];
-        }
-
-        decodeLine(currLine, i, j, prgmName, currWord, index);
-    }
-
-    free(prgmName);
-    free(currWord);
-    return 0;
+    return currWord;
 }
 
 void decodeLine(char *currLine, int line, int c, char *prgmName, char *currWord, int index) {
@@ -95,13 +74,34 @@ void getString(char *currWord, char *currLine, char *prgmName, uint32_t index) {
     }
 }
 
-char *nextWord(char *currLine, char *currWord, uint32_t index) {
-    currWord = realloc(currWord, sizeof(char));
+int main(int argc, char *argv[]) {
+    char *prgmName = (char *)malloc(sizeof(argv[2])), *currWord = (char *)malloc(sizeof(char));
+    uint32_t index = 0;
+    
+    int line_count = atoi(argv[1]);
+    int file_index = 0;
+    char *file = readFile("temp.txt");
 
-    for(int i = 0; i != ' '; i++) {
-        realloc(currWord, i + 2);
-        currWord[i] = currLine[index++];
+    strcpy(prgmName, argv[2]);
+
+    if(file == NULL) {
+        printf("Error! could not read the file!");
+        return 1;
     }
 
-    return currWord;
+    for(int i = 0, j = 0; i < line_count; i++) {
+        size_t size = 1;
+        char *currLine = (char *)malloc(sizeof(char));
+
+        for (; currLine[j] != '\n'; j++) {
+            realloc(currLine, ++size);
+            currLine[size - 1] = file[file_index++];
+        }
+
+        decodeLine(currLine, i, j, prgmName, currWord, index);
+    }
+
+    free(prgmName);
+    free(currWord);
+    return 0;
 }
