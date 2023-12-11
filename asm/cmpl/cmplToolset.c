@@ -7,6 +7,10 @@ void setCmplToolchain() {
     cmpl.setCompileUntil = cmplToolchain_SetCompileUntil;
 }
 
-cmplToolchain_SetCompileUntil(char *input, uint64_t data) {
-    
+cmplToolchain_SetCompileUntil(char *input, char *data) {
+    cmpl.stopCmpl = false;
+
+    if(strcmp(input, "instructions")) {
+        
+    }
 }
