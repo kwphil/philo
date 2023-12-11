@@ -3,10 +3,8 @@
 
 cmplToolchain_t cmpl = setCmplToolchain();
 
-setCmplToolchain() {
-    cmplToolchain_t ret;
-
-    ret.setCompileUntil = cmplToolchain_SetCompileUntil;
+void setCmplToolchain() {
+    cmpl.setCompileUntil = cmplToolchain_SetCompileUntil;
 }
 
 cmplToolchain_SetCompileUntil(char *input, uint64_t data) {
