@@ -10,7 +10,7 @@ void setCmplToolchain() {
 cmplToolchain_SetCompileUntil(char *input, char *data) {
     cmpl.stopCmpl = false;
 
-    if(strcmp(input, "instructions")) {
+    if(strcmp(input, "instruct-num")) {
         
     }
 }
