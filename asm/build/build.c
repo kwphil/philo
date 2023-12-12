@@ -8,7 +8,7 @@
 void build(const asm_t *asmList, const char *argv) {
     if((int)argv[2] == 1 && argv[3] != NULL) system(appendStr("touch", argv[3]));
     else system("touch temp.s");
-    system("\"section .text\nglobal _start\n_start: \" >> temp.s")
+    system("\"section .text\nglobal _start\n_start: \" >> temp.s");
     int i = 0, loc = 0, sect = 0;
 
     while (1) {
