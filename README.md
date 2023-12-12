@@ -63,7 +63,7 @@ Another great thing about Philo is the linking power. It can link:
 - Plain text files
 
 ### Packages
-In order to fit all the necessary applications to fit all this in, Philo has its own package manager. It can be called with the ```Phacket``` command. To create a package, and use a package, will be in (doc/phacket.md)[here].
+In order to fit all the necessary applications to fit all this in, Philo has its own package manager. It can be called with the ```Phacket``` command. To create a package, and use a package, will be in [here](doc/phacket.md).
 
 #### Usage
 ```
