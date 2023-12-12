@@ -12,12 +12,13 @@ void build(const asm_t *asmList, const char *argv) {
     int i = 0, loc = 0, sect = 0;
 
     while (1) {
-        for (; asmList[i].ins[0] != '\0'; loc++) {
+        while (asmList[i].ins[0] != '\0') {
             if (asmList[i].section != sect || asmList[i].loc != loc)
                 continue;
 
             system(appendf("\"%s \" >> temp.s", asmList[i].ins));
             i = 0;
+            loc++;
         }
 
         if (sect <= 3) {
