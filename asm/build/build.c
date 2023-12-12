@@ -12,7 +12,7 @@ void build(const asm_t *asmList, const char *argv) {
     int i = 0, loc = 0, sect = 0;
 
     while (1) {
-        for (;asmList[i].ins[0] != '\0'; loc++) {
+        for (; asmList[i].ins[0] != '\0'; loc++) {
             if (asmList[i].section != sect || asmList[i].loc != loc)
                 continue;
 
