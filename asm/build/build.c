@@ -7,29 +7,30 @@
 #include "../../srcp/types/types.h"
 
 void build(const asm_t *asmList, const char *argv) {
-    char fileContents[10000] = "section .text\nglobal _start\n_start: ";
+    system("touch temp.s");
+    system("\"section .text\nglobal _start\n_start: \" >> temp.s")
     int i = 0, loc = 0, sect = 0;
 
     while (1) {
-        while (asmList[i].ins[0] != '\0') {
+        for (;asmList[i].ins[0] != '\0'; loc++) {
             if (asmList[i].section != sect || asmList[i].loc != loc)
                 continue;
 
-            strcat(fileContents, asmList[i].ins);
-            strcat(fileContents, " ");
+            system(appendf("\"%s \" >> temp.s", asmList[i].ins));
             i = 0;
-            loc++;
         }
 
         if (sect <= 3) {
             loc = 0;
-            strcat(fileContents, "section .");
-            if (sect == 1) strcat(fileContents, "data ");
-            else strcat(fileContents, "bss ");
+            system("\"section .\" >> temp.s");
+            if (sect == 1) system("\"data \" >> temp.s");
+            else system("\"bss \" >> temp.s");
             sect++;
         } else break;
     }
 
+    system("touch temp.s");
+    system(appendf(""))
     writeFile("temp.s", fileContents);
 
     // Execute the assembler with the correct path
