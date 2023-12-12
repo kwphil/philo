@@ -17,6 +17,7 @@ typedef struct {
 } token_t;
 
 typedef struct {
+  int loc;
   int section;
   char *ins;
 } asm_t;
