@@ -6,9 +6,11 @@
 #include "../../srcp/types/types.h"
 
 void build(const asm_t *asmList, const char *argv) {
-    if((int)argv[2] == 1 && argv[3] != NULL) system(appendStr("touch", argv[3]));
-    else system("touch temp.s");
-    system("\"section .text\nglobal _start\n_start: \" >> temp.s");
+    if((int)argv[2] != 1 || argv[3] == NULL) {
+        argv[3] = (char *)malloc((size_t)6);
+        strcpy(argv[3], "asm.s");
+    } else system(appendStr("touch ", argv[3]));
+    system(appendStr("\"section .text\nglobal _start\n_start: \" >> ", argv[3]));
     int i = 0, loc = 0, sect = 0;
 
     while (1) {
@@ -16,23 +18,25 @@ void build(const asm_t *asmList, const char *argv) {
             if (asmList[i].section != sect || asmList[i].loc != loc)
                 continue;
 
-            system(appendf("\"%s \" >> temp.s", asmList[i].ins));
+            system(appendf("\"%s \" >> %s", argv[3], asmList[i].ins));
             i = 0;
             loc++;
         }
 
         if (sect <= 3) {
             loc = 0;
-            system("\"section .\" >> temp.s");
-            if (sect == 1) system("\"data \" >> temp.s");
-            else system("\"bss \" >> temp.s");
+            system(appendStr("\"section .\" >> ", argv[3]));
+            if (sect == 1) system(appendStr("\"data \" >> ", argv[3]));
+            else system(appendStr("\"bss \" >> ", argv[3]));
             sect++;
         } else break;
     }
 
     // Execute the assembler with the correct path
     if((int)argv[2] == 0) {
-        system("nasm temp.s -o build.bin && rm temp.s");
+        system(appendf("nasm %s -o build.bin && rm %s", argv[3], argv[3]));
         exit(0);
     }
+
+    exit(0);
 }
