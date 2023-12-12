@@ -10,7 +10,8 @@ void build(const asm_t *asmList, const char *argv) {
         argv[3] = (char *)malloc((size_t)6);
         strcpy(argv[3], "asm.s");
     } else system(appendStr("touch ", argv[3]));
-    system(appendStr("\"section .text\nglobal _start\n_start: \" >> ", argv[3]));
+
+    system(appendStr("\"section .text\nglobal _start\n_start: \" >> ", argv[3])); //start the program here
     int i = 0, loc = 0, sect = 0;
 
     while (1) {
