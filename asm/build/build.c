@@ -6,7 +6,7 @@
 #include "../../srcp/types/types.h"
 
 void build(const asm_t *asmList, const char *argv) {
-    if((int)argv[2] != 1 || argv[3] == NULL) {
+    if(atoi(argv[2]) != 1 || argv[3] == NULL) {
         argv[3] = (char *)malloc((size_t)6);
         strcpy(argv[3], "asm.s");
     } else system(appendStr("touch ", argv[3]));
@@ -15,12 +15,13 @@ void build(const asm_t *asmList, const char *argv) {
 
     while (1) {
         while (asmList[i].ins[0] != '\0') {
-            if (asmList[i].section != sect || asmList[i].loc != loc)
-                continue;
+            if(asmList[i].section == sect && asmList[i].loc == loc) {
+                system(appendf("\"%s \" >> %s", argv[3], asmList[i].ins));
+                i = 0;
+                ++loc;
 
-            system(appendf("\"%s \" >> %s", argv[3], asmList[i].ins));
-            i = 0;
-            loc++;
+                continue;
+            }
         }
 
         if (sect <= 3) {
@@ -33,7 +34,7 @@ void build(const asm_t *asmList, const char *argv) {
     }
 
     // Execute the assembler with the correct path
-    if((int)argv[2] == 0) {
+    if(atoi(argv[2]) == 0) {
         system(appendf("nasm %s -o build.bin && rm %s", argv[3], argv[3]));
         exit(0);
     }
