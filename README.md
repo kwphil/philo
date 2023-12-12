@@ -70,4 +70,4 @@ In order to fit all the necessary applications to fit all this in, Philo has its
 phacket -p <packet> -o {<options>}
 ```
 
-PHACKET DOES NOT YET EXIST AND ALL NECESSARY PACKAGES WILL BE PUT IN ```PACKAGE``` DIR IN THE COMPILER FOR YOU UNTIL THE PACKAGE MANAGER IS BUILT
+Phacket is still in progress, and does not yet have any packages to install.
