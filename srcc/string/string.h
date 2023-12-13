@@ -18,4 +18,10 @@ bool isNum(char *str);
 // 0 at the end param will be the last char
 char *substr(char *str, int start, int end);
 
+char *appendf(const char *str, ...);
+
+char *sToA(const char **arr);
+
+
+
 #endif
