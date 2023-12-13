@@ -10,7 +10,7 @@ void tempWrite(char *filename, void *write, uint32_t size) {
         exit(14);
     }
 
-    fprintf(filename, appendStr((char [size])write[i += inc], '\n')); //make sure we add a null-pointer to convert it to a string
+    fprintf(filename, appendStr((char [size])write, '\n')); //make sure we add a null-pointer to convert it to a string
 
     fclose(fptr);
 }
