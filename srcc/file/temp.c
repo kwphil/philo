@@ -18,12 +18,13 @@ void tempPush(char *filename, void *write, size_t size) {
 }
 
 void *tempPop(char *filename, size_t size) {
+    char *ret = malloc(sizeof(char));
     uint64_t i = 0;
     FILE *fptr = fopen(filename, "r");
+    fseek(fptr, SEEK_END, ~size + 1);
 
-    while(i++ < size) {
-        fseek(fptr, 0, )
-    }
+    while(i++ < size)
+        char[i] = fgetc(fptr);
 
     fseek(f, 0, SEEK_END);
     int fSize = ftell(f) - size;

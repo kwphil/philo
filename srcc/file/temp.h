@@ -7,4 +7,6 @@
 //Note that this can be dangerous, do not use unless necessary, and you know what you are doing.
 
 //Appends to a specified file
-void tempWrite(char *filename, void *write, size_t size);
+void tempPush(char *filename, void *write, size_t size);
+
+void *tempPop
