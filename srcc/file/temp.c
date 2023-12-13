@@ -5,7 +5,6 @@
 #include <sys/types.h>
 
 void tempPush(char *filename, void *write, size_t size) {
-
     FILE *fptr = fopen(appendStr("temp/", filename), "w");
     if(fptr == NULL) {
         printf("Compiler Error! Temp file %s not found", filename);
@@ -13,7 +12,6 @@ void tempPush(char *filename, void *write, size_t size) {
     }
 
     fprintf(filename, appendStr((char [size])write, '\0')); //make sure we add a null-pointer to convert it to a string
-
     fclose(fptr);
 }
 
