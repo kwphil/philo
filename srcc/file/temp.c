@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <stdlib.h>
+#include "../string/string.h"
 
 void tempPush(char *filename, void *write, size_t size) {
     FILE *fptr = fopen(appendStr("temp/", filename), "w");
@@ -11,7 +13,7 @@ void tempPush(char *filename, void *write, size_t size) {
         exit(14);
     }
 
-    fprintf(filename, appendStr((char [size])write, '\0')); //make sure we add a null-pointer to convert it to a string
+    fwrite(filename, appendStr((char [size])write, '\0')); //make sure we add a null-pointer to convert it to a string
     fclose(fptr);
 }
 
@@ -26,6 +28,7 @@ void *tempPop(char *filename, size_t size) {
         ret[i] = (uint8_t)fgetc(fptr);
 
     truncate(filename, fSize);
+    fclose(fptr);
 
     return ret;
 }
@@ -39,5 +42,6 @@ void *tempRead(char *filename. size_t size) {
     while(i++ < size)
         ret[i] = (uint8_t)fgetc(fptr);
 
+    fclose(fptr);
     return ret;
 }
