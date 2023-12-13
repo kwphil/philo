@@ -9,13 +9,13 @@
 void build(const asm_t *asmList, const char *argv) {
     FILE *fptr = fopen("asm.s", "a");
 
-    fprintf(appendStr("section .text\nglobal _start\n_start: \n")); //start the program here
+    fprintf(fptr, appendStr("section .text\nglobal _start\n_start: \n")); //start the program here
     int i = 0, loc = 0, sect = 0;
 
     while (1) {
         while (asmList[i].ins[0] != '\0') {
             if(asmList[i].section == sect && asmList[i].loc == loc) {
-                fprintf(asmList[i].ins);
+                fprintf(fptr, asmList[i].ins);
                 i = 0;
                 ++loc;
 
@@ -25,9 +25,9 @@ void build(const asm_t *asmList, const char *argv) {
 
         if (sect <= 3) {
             loc = 0;
-            fprintf("section .");
-            if (sect == 1) fprintf("data ");
-            else fprintf("bss ");
+            fprintf(fptr, "section .");
+            if (sect == 1) fprintf(fptr, "data ");
+            else fprintf(fptr, "bss ");
             sect++;
         } else break;
     }
