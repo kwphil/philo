@@ -20,6 +20,9 @@ while getopts ":o:t" opt; do
     t)
       bin/main.elf 0
       ;;
+    p)
+      bin/phacket.elf
+      ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
       usage
