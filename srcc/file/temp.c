@@ -22,12 +22,10 @@ void *tempPop(char *filename, size_t size) {
     uint64_t i = 0;
     FILE *fptr = fopen(filename, "r");
     fseek(fptr, SEEK_END, ~size + 1);
+    int fsize = ftell(fptr);
 
     while(i++ < size)
         char[i] = fgetc(fptr);
-
-    fseek(f, 0, SEEK_END);
-    int fSize = ftell(f) - size;
 
     truncate(filename, fSize);
 }
