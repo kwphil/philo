@@ -4,7 +4,8 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <stdlib.h>
-#include "../string/string.h"
+#include <string.h>
+#include "string.h"
 
 void tempPush(char *filename, void *write, size_t size) {
     FILE *fptr = fopen(appendStr("temp/", filename), "w");
@@ -13,7 +14,7 @@ void tempPush(char *filename, void *write, size_t size) {
         exit(14);
     }
 
-    fwrite(filename, appendStr((char [size])write, '\0')); //make sure we add a null-pointer to convert it to a string
+    fwrite(write, size, 1, fptr); //make sure we add a null-pointer to convert it to a string
     fclose(fptr);
 }
 
@@ -22,7 +23,7 @@ void *tempPop(char *filename, size_t size) {
     uint64_t i = 0;
     FILE *fptr = fopen(appendStr("temp/", filename), "r");
     fseek(fptr, 0, SEEK_END - size);
-    int fsize = ftell(fptr);
+    int fSize = ftell(fptr);
 
     while(i++ < size)
         ret[i] = (uint8_t)fgetc(fptr);
@@ -33,7 +34,7 @@ void *tempPop(char *filename, size_t size) {
     return ret;
 }
 
-void *tempRead(char *filename. size_t size) {
+void *tempRead(char *filename, size_t size) {
     uint8_t *ret = malloc(size);
     uint64_t i = 0;
     FILE *fptr = fopen(appendStr("temp/", filename), "r");
