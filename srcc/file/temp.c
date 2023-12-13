@@ -22,6 +22,12 @@ void *tempPop(char *filename, size_t size) {
     uint8_t *ret = malloc(size);
     uint64_t i = 0;
     FILE *fptr = fopen(appendStr("temp/", filename), "r");
+
+    if(fptr == NULL) {
+        printf("Compiler Error! Temp file %s not found", filename);
+        exit(14);
+    }
+
     fseek(fptr, 0, SEEK_END - size);
     int fSize = ftell(fptr);
 
@@ -38,6 +44,12 @@ void *tempRead(char *filename, size_t size) {
     uint8_t *ret = malloc(size);
     uint64_t i = 0;
     FILE *fptr = fopen(appendStr("temp/", filename), "r");
+
+    if(fptr == NULL) {
+        printf("Compiler Error! Temp file %s not found", filename);
+        exit(14);
+    }
+
     fseek(fptr, 0, SEEK_END - size);
 
     while(i++ < size)
