@@ -9,4 +9,8 @@
 //Appends to a specified file
 void tempPush(char *filename, void *write, size_t size);
 
+//Reads a specific amount from a file, and then removes that data from the file
 void *tempPop(char *filename, size_t size);
+
+//Reads a specific amount from a file
+void *tempRead(char *filename, size_t size);
