@@ -1,0 +1,7 @@
+#!/bin/bash
+# Philo Bash Shell - User interface for interacting with the C program Philo
+# Creator - KWPhil
+
+usage() {echo "Usage $0 [options] [filename]"\n
+              ;}
+
