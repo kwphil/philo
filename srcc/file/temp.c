@@ -21,7 +21,7 @@ void *tempPop(char *filename, size_t size) {
     uint8_t *ret = malloc(size + 1);
     uint64_t i = 0;
     FILE *fptr = fopen(appendStr("temp/", filename), "r");
-    fseek(fptr, SEEK_END, ~size + 1);
+    fseek(fptr, 0, SEEK_END - size);
     int fsize = ftell(fptr);
 
     while(i++ < size)
