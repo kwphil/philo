@@ -9,4 +9,4 @@
 //Appends to a specified file
 void tempPush(char *filename, void *write, size_t size);
 
-void *tempPop
+void *tempPop(char *filename, size_t size);
