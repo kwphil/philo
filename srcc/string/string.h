@@ -1,7 +1,6 @@
 #ifndef CSTRING_H
 #define CSTRING_H
 
-#include "../../srcp/types/types.h"
 #include <stdbool.h>
 
 // Used for some extra string functions
