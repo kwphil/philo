@@ -14,7 +14,7 @@ void tempWrite(char *filename, void *write, uint32_t size) {
 
     while(i <= size)
         if(i + inc > size) inc >> 1; //Diving by 2
-        fprintf(filename, appendStr((char [inc]write[i += inc]), '\n')); //make sure we add a null-pointer to convert it to a string
+        fprintf(filename, appendStr((char [inc])write[i += inc], '\n')); //make sure we add a null-pointer to convert it to a string
 
     fclose(fptr);
 }
