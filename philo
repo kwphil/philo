@@ -10,7 +10,6 @@ usage() {
 while getopts ":o:t" opt; do
   case $opt in
     o)
-      # Run "bin/main.elf 1 <filename>"
       if [ -f "$OPTARG" ]; then
         bin/main.elf 1 "$OPTARG"
       else
@@ -19,7 +18,6 @@ while getopts ":o:t" opt; do
       fi
       ;;
     t)
-      # Run "bin/main.elf 0"
       bin/main.elf 0
       ;;
     \?)
@@ -33,7 +31,6 @@ while getopts ":o:t" opt; do
   esac
 done
 
-# If no options are provided, call usage
 if [ $OPTIND -eq 1 ]; then
   usage
 fi
