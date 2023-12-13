@@ -6,7 +6,7 @@
 
 void tempPush(char *filename, void *write, size_t size) {
 
-    FILE *fptr = fopen(filename, "w");
+    FILE *fptr = fopen(appendStr("temp/", filename), "w");
     if(fptr == NULL) {
         printf("Compiler Error! Temp file %s not found", filename);
         exit(14);
@@ -20,7 +20,7 @@ void tempPush(char *filename, void *write, size_t size) {
 void *tempPop(char *filename, size_t size) {
     char *ret = malloc(sizeof(char));
     uint64_t i = 0;
-    FILE *fptr = fopen(filename, "r");
+    FILE *fptr = fopen(appendStr("temp/", filename), "r");
     fseek(fptr, SEEK_END, ~size + 1);
     int fsize = ftell(fptr);
 
