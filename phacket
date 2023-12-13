@@ -2,11 +2,12 @@
 # Phacket - Simple Package Manager for Philo
 # Creator - KWPhil https://www.github.com/kwphil
 
-usage() { echo "Usage: $0 [options] [package-name]\n
-                Options: \n
-                v: verbose: prints file changes
-                "; exit 1; }
-
+usage() { 
+  echo "Usage: $0 [options] [package-name]"
+  echo "Options: \n"
+  echo "v: verbose: prints file changes"
+  echo "; exit 1;" 
+}
 
 echo "Welcome to Phacket! Please enter a package name, or input LIST for a list of packages:"
 read INPUT
