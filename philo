@@ -2,6 +2,38 @@
 # Philo Bash Shell - User interface for interacting with the C program Philo
 # Creator - KWPhil
 
-usage() {echo "Usage $0 [options] [filename]"\n
-              ;}
+usage() {
+  echo "Usage: $0 [-o filename] [-t]"
+  exit 1
+}
 
+while getopts ":o:t" opt; do
+  case $opt in
+    o)
+      # Run "bin/main.elf 1 <filename>"
+      if [ -f "$OPTARG" ]; then
+        bin/main.elf 1 "$OPTARG"
+      else
+        echo "Error: File '$OPTARG' not found."
+        usage
+      fi
+      ;;
+    t)
+      # Run "bin/main.elf 0"
+      bin/main.elf 0
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      usage
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      usage
+      ;;
+  esac
+done
+
+# If no options are provided, call usage
+if [ $OPTIND -eq 1 ]; then
+  usage
+fi
