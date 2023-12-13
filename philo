@@ -4,24 +4,32 @@
 
 usage() {
   echo "Usage: $0 [-o filename] [-t]"
+  echo "Options: "
+  echo "-f - Attaches a file to compile"
+  echo "-o - Creates a file with specified name to compile into"
+  echo "-t - Compiles and runs, then removes the file automatically"
+  echo "-p - Opens Phacket"
   exit 1
 }
 
-while getopts ":o:t" opt; do
+while getopts ":o:f:t:p" opt; do
   case $opt in
     o)
-      if [ -f "$OPTARG" ]; then
-        bin/main.elf 1 "$OPTARG"
+      if [ -f "$OPTARG"]
+        bin/main.elf $FILE 1 "$OPTARG"
       else
         echo "Error: File '$OPTARG' not found."
         usage
       fi
       ;;
+    f)
+      $FILE=$OPTARG
+      ;;
     t)
-      bin/main.elf 0
+      bin/main.elf $FLIE 0
       ;;
     p)
-      bin/phacket.elf
+      ./phacket
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
