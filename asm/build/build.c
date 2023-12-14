@@ -26,8 +26,12 @@ void build(const asm_t *asmList, const char *argv) {
         if (sect <= 3) {
             loc = 0;
             fprintf(fptr, "section .");
-            if (sect == 1) fprintf(fptr, "data ");
-            else fprintf(fptr, "bss ");
+            if (sect == 1) {
+                fprintf(fptr, "data ");
+                continue;
+            }
+            
+            fprintf(fptr, "bss ");
             sect++;
         } else break;
     }
