@@ -7,7 +7,7 @@
 #include <string.h>
 #include "string.h"
 
-void tempPush(char *filename, void *write, size_t size) {
+uint8_t *tempPush(char *filename, uint8_t *write, size_t size) {
     FILE *fptr = fopen(appendStr("temp/", filename), "w");
     if(fptr == NULL) {
         printf("Compiler Error! Temp file %s not found", filename);
@@ -18,7 +18,7 @@ void tempPush(char *filename, void *write, size_t size) {
     fclose(fptr);
 }
 
-void *tempPop(char *filename, size_t size) {
+uint8_t *tempPop(char *filename, size_t size) {
     uint8_t *ret = malloc(size);
     uint64_t i = 0;
     FILE *fptr = fopen(appendStr("temp/", filename), "r");
@@ -40,7 +40,7 @@ void *tempPop(char *filename, size_t size) {
     return ret;
 }
 
-void *tempRead(char *filename, size_t size) {
+uint8_t *tempRead(char *filename, size_t size) {
     uint8_t *ret = malloc(size);
     uint64_t i = 0;
     FILE *fptr = fopen(appendStr("temp/", filename), "r");
