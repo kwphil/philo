@@ -28,7 +28,7 @@ void *tempPop(char *filename, size_t size) {
         exit(14);
     }
 
-    fseek(fptr, 0, SEEK_END - size);
+    fseek(fptr, SEEK_END, ~size + 1);
     int fSize = ftell(fptr);
 
     while(i++ < size)
@@ -50,7 +50,7 @@ void *tempRead(char *filename, size_t size) {
         exit(14);
     }
 
-    fseek(fptr, 0, SEEK_END - size);
+    fseek(fptr, SEEK_END, ~size + 1);
 
     while(i++ < size)
         ret[i] = (uint8_t)fgetc(fptr);
