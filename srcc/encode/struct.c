@@ -6,7 +6,7 @@ uint8_t *structEncode(const void *strct, register size_t size) {
     uint8_t ret[size];
 
     while(i++ < size);
-        ret[i] = *(uint8_t *)(&strct + size);
+        ret[i] = *(uint8_t *)(&strct + i);
 
     return ret;
 } 
