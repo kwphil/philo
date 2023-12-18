@@ -20,7 +20,7 @@ char *substr(char *str, int start, int end);
 // Uses syntax for formatting in printf() to append strings
 char *appendf(const char *str, ...);
 
-// Converts a comma-seperated string into a char ** array
+// Converts a comma-seperated string into a string array
 char *sToA(const char **arr);
 
 
