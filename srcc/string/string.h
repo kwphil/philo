@@ -21,8 +21,7 @@ char *substr(char *str, int start, int end);
 char *appendf(const char *str, ...);
 
 // Converts a comma-seperated string into a string array
+// Removes the commas
 char *sToA(const char **arr);
-
-
 
 #endif
