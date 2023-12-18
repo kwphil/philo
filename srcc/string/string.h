@@ -17,8 +17,10 @@ bool isNum(char *str);
 // 0 at the end param will be the last char
 char *substr(char *str, int start, int end);
 
+// Uses syntax for formatting in printf() to append strings
 char *appendf(const char *str, ...);
 
+// Converts a comma-seperated string into a char ** array
 char *sToA(const char **arr);
 
 
